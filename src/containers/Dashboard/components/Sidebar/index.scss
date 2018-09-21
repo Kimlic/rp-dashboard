@@ -1,0 +1,33 @@
+@import "src/colors";
+
+.sidebar {
+  background-image: linear-gradient(to bottom, $blue-gradient-light, $blue-gradient-dark);
+
+  &--logo {
+    background: transparent;
+    border-color: transparent;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+#sidebar {
+  flex-grow: 1;
+  flex-shrink: 0;
+  overflow-y: auto;
+  
+  width: 5%;
+  max-width: 5%;
+}
+
+#sidebar-content {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  width: 5%;
+  max-width: 5%;
+  min-height: 100vh;
+}

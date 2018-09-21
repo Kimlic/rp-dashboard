@@ -1,0 +1,13 @@
+.sidebar-btn {
+  background: transparent;
+  border-color: transparent;
+  margin-top: 2rem;
+  padding-left: 1.7rem;
+  padding-right: 1.7rem;
+
+  &__normal {
+    &:not(:hover):not(:active):not(:focus) {
+      filter: invert(.83) sepia(1) saturate(5) hue-rotate(175deg);
+    }
+  }
+}
