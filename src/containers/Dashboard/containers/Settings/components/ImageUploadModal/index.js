@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody, Button } from 'reactstrap'
 
 import './index.scss'
 
@@ -32,8 +32,8 @@ export default class UploadOutcropPictureModal extends Component {
     ]
 
     return (
-      <div>
-        <button type="button" className="btn btn-primary btn-kimlic" onClick={this.toggle}>Upload</button>
+      <div className="image-upload-modal">
+        <Button type="button" size="lg" className="btn-kimlic" onClick={this.toggle}>Upload</Button>
 
         <Modal isOpen={showModal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Upload Image</ModalHeader>

@@ -18,7 +18,7 @@ import Toasts from "src/components/Toasts"
 
 // GraphQL
 
-const LOGIN_MUTATION = gql`
+const M_LOGIN = gql`
   mutation LoginMutation($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
@@ -81,7 +81,7 @@ class SignIn extends Component {
     const { email, password } = this.state
 
     return (
-      <Mutation mutation={LOGIN_MUTATION} variables={{ email, password }} onCompleted={this.onCompleted} onError={this.onError}>
+      <Mutation mutation={M_LOGIN} variables={{ email, password }} onCompleted={this.onCompleted} onError={this.onError}>
         {(login, { data }) => {
           return (
             <Container fluid className="signin">

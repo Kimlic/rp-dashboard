@@ -1,0 +1,7 @@
+#import "./CompanyFields.gql"
+
+mutation CompanyUpdate($id: String!, $name: String!, $email: String!, $website: String, $phone: String, $address: String, $details: String) {
+  companyUpdate(id: $id, company: { name: $name, email: $email, website: $website, phone: $phone, address: $address, details: $details }) {
+    ...CompanyFields
+  }
+}

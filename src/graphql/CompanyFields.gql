@@ -1,0 +1,9 @@
+fragment CompanyFields on Company {
+  id
+  name
+  email
+  website
+  phone
+  address
+  details
+}

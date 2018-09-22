@@ -1,0 +1,7 @@
+#import "./CompanyFields.gql"
+
+query CompanyFetch {
+  company {
+    ...CompanyFields
+  }
+}

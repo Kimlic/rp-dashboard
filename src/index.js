@@ -30,6 +30,10 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
+// const link = createAbsintheSocketLink(AbsintheSocket.create(
+//   new PhoenixSocket('ws://localhost:4000/socket/websocket?vsn=1.0.0', { params: { token: yourToken} }),
+//  ))
+
 const client = new ApolloClient({
   link: authLink.concat(new HttpLink({ uri: 'http://localhost:4003/api' })),
   cache: new InMemoryCache()

@@ -33,7 +33,7 @@ class InviteMembers extends Component {
 
               <Row>
                 <Col sm={{ size: 2, offset: 10 }} className="text-right">
-                  <Button className="mt-4 mx-auto btn-kimlic" size="lg" color="primary">Invite</Button>
+                  <Button className="btn-kimlic" size="lg" color="primary">Invite</Button>
                 </Col>
               </Row>
             </Container>
