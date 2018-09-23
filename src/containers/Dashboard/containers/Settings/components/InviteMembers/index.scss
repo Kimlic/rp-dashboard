@@ -1,0 +1,14 @@
+@import "src/colors";
+
+.settings--invite {
+  background-color: $white-light;
+  border-radius: 0.5rem;
+  padding: 2rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+
+  .btn-kimlic {
+    align-self: right;
+    margin-left: auto;
+  }
+}

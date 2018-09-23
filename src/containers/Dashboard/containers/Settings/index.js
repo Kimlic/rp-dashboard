@@ -42,7 +42,7 @@ class Settings extends Component {
 
     return (
       <div className="settings">
-        <Container fluid>
+        <Container fluid className="p-0 m-0">
           <Row>
             <Col xs={12}>
               <CompanyDetails />
@@ -50,7 +50,7 @@ class Settings extends Component {
           </Row>
 
           <Row>
-            <Col xs={10}>
+            <Col xs={9}>
               <InviteMembers members={memberList} />
             </Col>
           </Row>

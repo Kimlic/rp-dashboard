@@ -1,11 +1,24 @@
 import React, { PureComponent } from 'react'
-import { Container, Row, Col, Jumbotron, Form, FormGroup, Input } from 'reactstrap'
+import { Container, Row, Col, Jumbotron, Form, FormGroup, Label, Input } from 'reactstrap'
+import uuidv4 from 'uuid/v4'
+
+import './index.scss'
 
 import ImageUploadModal from '../ImageUploadModal'
 
 // Component
 
 export default class UI extends PureComponent {
+
+  // Handlers
+
+  handleFileChange = (companyId, onLogoChange) => ({ target: { validity, files: [file] } }) => {
+    const ext = (/[.]/.exec(file.name)) ? /[^.]+$/.exec(file.name) : '.jpg'
+    const fileRenamed = new File([file], `${uuidv4()}.${ext}`)
+    validity.valid && onLogoChange({ companyId, file: fileRenamed })
+  }
+
+  // Render
 
   renderRowFirst = (name, id, onChange) => (
     <FormGroup row>
@@ -55,10 +68,10 @@ export default class UI extends PureComponent {
     const { id: companyId, name, email, website, phone, address, details } = company
 
     return (
-      <Container fluid className="settings--details">
-        <Row>
-          <Col sm={10}>
-            <Jumbotron>
+      <Container fluid className="settings--details p-0">
+        <div className="row row-eq-height">
+          <Col sm={9}>
+            <div className="settings--details--info">
               <h2>Company Details</h2>
 
               <Form>
@@ -69,17 +82,17 @@ export default class UI extends PureComponent {
                   {this.renderRowForth(details, onChange)}
                 </Container>
               </Form>
-            </Jumbotron>
+            </div>
           </Col>
 
-          <Col sm={2} className="text-center">
-            <img src={logo.url} className="img-responsive mb-4" alt="logo" />
-            <input type="file" required onChange={({ target: { validity, files: [file] } }) => {
-              validity.valid && onLogoChange({ companyId, file })
-            }} />
-            {/* <ImageUploadModal /> */}
+          <Col sm={3}>
+            <div className="settings--details--logo">
+              <img src={logo.url} className="img img-fluid" alt="logo" />
+              <Input id="logo" type="file" placeholder="Change logo" onChange={this.handleFileChange(companyId, onLogoChange)} />
+              <Label for="logo">Change logo</Label>
+            </div>
           </Col>
-        </Row>
+        </div>
       </Container>
     )
   }
