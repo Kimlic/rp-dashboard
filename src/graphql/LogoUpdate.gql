@@ -1,5 +1,7 @@
+#import "./LogoFields.gql"
+
 mutation LogoUpdate($companyId: String!, $file: Upload!) {
   logoUpdate(companyId: $companyId, file: $file) {
-    url
+    ...LogoFields
   }
 }

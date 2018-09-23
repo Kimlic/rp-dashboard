@@ -1,5 +1,7 @@
+#import "./LogoFields.gql"
+
 query LogoFetch {
   logo {
-    url
+    ...LogoFields
   }
 }

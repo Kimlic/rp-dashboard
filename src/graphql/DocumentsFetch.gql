@@ -1,0 +1,10 @@
+query DocumentsFetch {
+  documents {
+    id
+    type
+    firstName
+    lastName
+    country
+    userAddress
+  }
+}
