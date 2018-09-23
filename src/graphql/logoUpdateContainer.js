@@ -1,15 +1,14 @@
 import { graphql } from 'react-apollo'
 
-import uploadLogo from 'src/graphql/UploadLogo.gql'
+import logoUpdate from 'src/graphql/LogoUpdate.gql'
 import companyFetch from 'src/graphql/CompanyFetch.gql'
 
 // Functions
 
-export default graphql(uploadLogo, {
+export default graphql(logoUpdate, {
   props: ({ mutate }) => ({
-    uploadLogo: (variables) => {
-      console.log("AAAAAA", variables);
-      const res = mutate({ 
+    logoUpdate: (variables) => {
+      return mutate({ 
         variables
         // refetchQueries: [{
         //   query: companyFetch,
@@ -22,9 +21,6 @@ export default graphql(uploadLogo, {
         //   }
         // }
       })
-      console.log("BBBBBB", res);
-
-      return res
     }
   })
 })

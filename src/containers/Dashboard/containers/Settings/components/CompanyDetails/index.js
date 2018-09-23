@@ -3,20 +3,24 @@ import { compose } from 'react-apollo'
 
 import companyFetchContainer from 'src/graphql/companyFetchContainer'
 import companyUpdateContainer from 'src/graphql/companyUpdateContainer'
-import uploadLogoContainer from 'src/graphql/uploadLogoContainer'
+import logoFetchContainer from 'src/graphql/logoFetchContainer'
+import logoUpdateContainer from 'src/graphql/logoUpdateContainer'
 
 import UI from './UI'
 
 // Component
 
-export default compose(companyFetchContainer, companyUpdateContainer, uploadLogoContainer) (
-  ({ companyData: { loading, company }, companyUpdate, uploadLogo }) => {
+export default compose(companyFetchContainer, companyUpdateContainer, logoFetchContainer, logoUpdateContainer) (
+  ({ companyData, logoData, companyUpdate, logoUpdate }) => {
+    const { loading: loadingCompany, company } = companyData
+    const { loading: loadingLogo, logo } = logoData
+
     let onChange = (company) => ({ target: { name, value } }) => companyUpdate({ ...company, [name]: value })
     onChange = onChange(company)
 
     const loader = <div>Loading...</div>
-    const companyDetails = <UI company={company} onChange={onChange} onLogoChange={uploadLogo} />
+    const companyDetails = <UI company={company} logo={logo} onChange={onChange} onLogoChange={logoUpdate} />
 
-    return (loading ? loader : companyDetails)
+    return (loadingCompany || loadingLogo ? loader : companyDetails)
   }
 )

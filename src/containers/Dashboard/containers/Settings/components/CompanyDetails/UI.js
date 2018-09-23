@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Container, Row, Col, Jumbotron, Form, FormGroup, Input } from 'reactstrap'
 
-import logo from 'src/assets/rp_logo.svg'
-
 import ImageUploadModal from '../ImageUploadModal'
 
 // Component
@@ -53,7 +51,7 @@ export default class UI extends PureComponent {
   )
 
   render() {
-    const { company, onChange, onLogoChange } = this.props
+    const { company, logo, onChange, onLogoChange } = this.props
     const { id: companyId, name, email, website, phone, address, details } = company
 
     return (
@@ -75,7 +73,7 @@ export default class UI extends PureComponent {
           </Col>
 
           <Col sm={2} className="text-center">
-            <img src={logo} className="img-responsive mb-4" alt="logo" />
+            <img src={logo.url} className="img-responsive mb-4" alt="logo" />
             <input type="file" required onChange={({ target: { validity, files: [file] } }) => {
               validity.valid && onLogoChange({ companyId, file })
             }} />

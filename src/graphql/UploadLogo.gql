@@ -1,5 +1,0 @@
-mutation UploadLogo($companyId: String!, $file: Upload!) {
-  uploadLogo(companyId: $companyId, file: $file) {
-    id
-  }
-}
