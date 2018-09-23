@@ -53,8 +53,8 @@ export default class UI extends PureComponent {
   )
 
   render() {
-    const { company, onChange } = this.props
-    const { id, name, email, website, phone, address, details } = company
+    const { company, onChange, onLogoChange } = this.props
+    const { id: companyId, name, email, website, phone, address, details } = company
 
     return (
       <Container fluid className="settings--details">
@@ -65,7 +65,7 @@ export default class UI extends PureComponent {
 
               <Form>
                 <Container fluid>
-                  {this.renderRowFirst(name, id, onChange)}
+                  {this.renderRowFirst(name, companyId, onChange)}
                   {this.renderRowSecond(website, email, onChange)}
                   {this.renderRowThird(phone, address, onChange)}
                   {this.renderRowForth(details, onChange)}
@@ -76,7 +76,10 @@ export default class UI extends PureComponent {
 
           <Col sm={2} className="text-center">
             <img src={logo} className="img-responsive mb-4" alt="logo" />
-            <ImageUploadModal />
+            <input type="file" required onChange={({ target: { validity, files: [file] } }) => {
+              validity.valid && onLogoChange({ companyId, file })
+            }} />
+            {/* <ImageUploadModal /> */}
           </Col>
         </Row>
       </Container>

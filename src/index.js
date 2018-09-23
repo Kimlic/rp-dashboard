@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { ApolloProvider } from "react-apollo"
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost'
 import { setContext } from 'apollo-link-context'
+import { createUploadLink } from '@richeterre/apollo-upload-client'
 
 import { AUTH_TOKEN } from 'src/constants/auth'
 import { store } from 'src/store'
@@ -35,7 +36,9 @@ const authLink = setContext((_, { headers }) => {
 //  ))
 
 const client = new ApolloClient({
-  link: authLink.concat(new HttpLink({ uri: 'http://localhost:4003/api' })),
+  link: authLink
+    // .concat(new HttpLink({ uri: 'http://localhost:4003/api' }))
+    .concat(new createUploadLink({ uri: 'http://localhost:4003/api' })),
   cache: new InMemoryCache()
 })
 
