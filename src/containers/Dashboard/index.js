@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Switch, Redirect, Route } from 'react-router-dom'
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
+import { compose } from 'react-apollo'
 
 import './index.scss'
 
@@ -8,6 +9,7 @@ import logo from 'src/assets/rp_logo.svg'
 
 import { role } from 'src/constants/auth'
 import authorized from 'src/HOC/authorized'
+import logoFetchContainer from 'src/graphql/logoFetchContainer'
 
 import Identities from './containers/Identities'
 import Funds from './containers/Funds'
@@ -38,7 +40,9 @@ class Dashboard extends Component {
   )
 
   render() {
-    const url = this.props.match.url
+    const { match, logoData } = this.props
+    const url = match.url
+    const logo = logoData.logo
 
     return (
       <div className="d-flex flex-row">
@@ -51,7 +55,7 @@ class Dashboard extends Component {
         <div className="dashboard" id="dashboard">
           <Navbar light expand="md">
             <NavbarBrand href="/">
-              <img src={logo} height="50rem" className="img-responsive" alt="logo" />
+              {logo && <img src={logo.url} height="50rem" className="img-responsive" alt="logo" />}
             </NavbarBrand>
 
             <Nav className="ml-auto" navbar>
@@ -70,4 +74,4 @@ class Dashboard extends Component {
 
 // Export 
 
-export default authorized([role.admin])(Dashboard)
+export default authorized([role.admin])(compose(logoFetchContainer)(Dashboard))

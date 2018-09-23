@@ -7,7 +7,7 @@
     align-content: center;
 
     left: 50%;
-    top: 50%;
+    top: 45%;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -22,7 +22,9 @@
   }
 
   &--logo {
-    max-width: 12rem;
+    max-height: 15rem;
+    margin-bottom: 2rem;
+    object-fit: contain;
   }
 }
 
