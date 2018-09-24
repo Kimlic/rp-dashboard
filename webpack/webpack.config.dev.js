@@ -5,8 +5,8 @@ const envFile = require('node-env-file')
 
 const config = require('./webpack.config.js')
 
-const host = process.env.HOST || 'localhost'
-const port = process.env.PORT || '3000'
+const host = process.env.HOST
+const port = process.env.PORT
 process.env.NODE_ENV = 'development'
 
 try {
@@ -19,9 +19,9 @@ module.exports = merge.smart(config, {
   devtool: 'source-map',
   mode: 'development',
   output: {
+    publicPath: '/',
     path: path.join(__dirname, 'public'),
-    filename: 'bundle.js',
-    publicPath: '/static/'
+    filename: 'bundle.js'
   },
   devServer: {
     host: host,

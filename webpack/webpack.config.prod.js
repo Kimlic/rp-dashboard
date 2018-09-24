@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackRootPlugin = require('html-webpack-root-plugin')
 
 const config = require('./webpack.config.js');
 process.env.NODE_ENV = 'production'
@@ -10,6 +11,7 @@ process.env.NODE_ENV = 'production'
 module.exports = merge.smart(config, {
   mode: 'production',
   output: {
+    publicPath: '/',
     path: path.join(__dirname, '../dist'),
     filename: 'bundle.js'
   },
@@ -18,10 +20,10 @@ module.exports = merge.smart(config, {
     new UglifyJsPlugin({
       warningsFilter: (src) => true
     }),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({ title: 'Kimlic Dashboard' }),
+    new HtmlWebpackRootPlugin({ tagName: 'main', tagId: 'root' }),
     new webpack.DefinePlugin({
-      'process.env': {
-      }
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ]
 });
