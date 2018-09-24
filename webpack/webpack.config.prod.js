@@ -5,6 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = require('./webpack.config.js');
+process.env.NODE_ENV = 'production'
 
 module.exports = merge.smart(config, {
   mode: 'production',

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34.684 33.833">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="settings" transform="translate(-65.5 154.328)">
+    <g id="Group" transform="translate(65.5 -154.329)">
+      <path id="Compound_Path" data-name="Compound Path" class="cls-1" d="M20.6,39a4.829,4.829,0,0,0-4.654,3.512H10.5v2.634h5.444a4.829,4.829,0,0,0,9.307,0H45.184V42.512H25.251A4.829,4.829,0,0,0,20.6,39Zm0,7.025a2.2,2.2,0,1,1,2.2-2.2A2.2,2.2,0,0,1,20.6,46.025Z" transform="translate(-10.5 -26.927)"/>
+      <path id="Compound_Path-2" data-name="Compound Path" class="cls-1" d="M35.086,11.5a4.829,4.829,0,0,0-4.654,3.512H10.5v2.634H30.432a4.829,4.829,0,0,0,9.307,0h5.444V15.012H39.74A4.829,4.829,0,0,0,35.086,11.5Zm0,7.025a2.2,2.2,0,1,1,2.2-2.2A2.2,2.2,0,0,1,35.086,18.525Z" transform="translate(-10.5 -11.5)"/>
+      <path id="Compound_Path-3" data-name="Compound Path" class="cls-1" d="M35.086,66.5a4.829,4.829,0,0,0-4.654,3.512H10.5v2.634H30.432a4.829,4.829,0,0,0,9.307,0h5.444V70.012H39.74A4.829,4.829,0,0,0,35.086,66.5Zm0,7.025a2.2,2.2,0,1,1,2.2-2.2A2.2,2.2,0,0,1,35.086,73.525Z" transform="translate(-10.5 -42.353)"/>
+    </g>
+  </g>
+</svg>
