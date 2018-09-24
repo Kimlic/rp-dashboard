@@ -75,6 +75,8 @@ class IdentityChart extends Component {
   render() {
     return (
       <div className="chart">
+        <h2>Validated Identities</h2>
+
         <ResponsiveLine
           data={data}
           margin={this.margin}

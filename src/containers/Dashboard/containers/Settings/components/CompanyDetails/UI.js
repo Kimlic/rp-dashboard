@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Container, Row, Col, Jumbotron, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Container, Col, Form, FormGroup, Label, Input } from 'reactstrap'
 import uuidv4 from 'uuid/v4'
 
 import './index.scss'
@@ -87,7 +87,7 @@ export default class UI extends PureComponent {
 
           <Col sm={3}>
             <div className="settings--details--logo">
-              <img src={logo.url} className="img img-fluid" alt="logo" />
+              {logo && <img src={logo.url} className="img img-fluid" alt="logo" />}
               <Input id="logo" type="file" placeholder="Change logo" onChange={this.handleFileChange(companyId, onLogoChange)} />
               <Label for="logo">Change logo</Label>
             </div>
