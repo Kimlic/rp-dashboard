@@ -51,7 +51,7 @@ class IdentityList extends Component {
 
   render() {
     const { loading, documents } = this.props.documentsData
-    if (loading) return null
+    if (loading || !documents) return null
 
     return (
       <div className="identities">

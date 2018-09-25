@@ -35,9 +35,11 @@ const authLink = setContext((_, { headers }) => {
 //   new PhoenixSocket('ws://localhost:4000/socket/websocket?vsn=1.0.0', { params: { token: yourToken} }),
 //  ))
 
+console.log("AAAAA: ", process.env);
+
 const client = new ApolloClient({
   link: authLink
-    .concat(new createUploadLink({ uri: 'http://localhost:4003/api' })),
+    .concat(new createUploadLink({ uri: process.env.API_URI })),
   cache: new InMemoryCache()
 })
 

@@ -90,7 +90,6 @@
     "start": "webpack-dev-server --config ./webpack/webpack.config.dev.js --hot --inline --progress --profile --colors --watch --port 3000",
     "build:webpack": "NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js -p  --profile --colors --bail",
     "build": "npm run clean && npm run build:webpack",
-    "server": "babel-node ./server/index.js",
     "test": "echo \"All tests passed!\" && exit 0"
   }
 }

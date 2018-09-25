@@ -1,12 +1,17 @@
-const path = require('path');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackRootPlugin = require('html-webpack-root-plugin')
 
-const config = require('./webpack.config.js');
-process.env.NODE_ENV = 'production'
+const config = require('./webpack.config.js')
+
+try {
+  envFile(path.join(__dirname, '../config/production.env'))
+} catch (e) {
+  console.log(e);
+}
 
 module.exports = merge.smart(config, {
   mode: 'production',
@@ -23,7 +28,12 @@ module.exports = merge.smart(config, {
     new HtmlWebpackPlugin({ title: 'Kimlic Dashboard' }),
     new HtmlWebpackRootPlugin({ tagName: 'main', tagId: 'root' }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        HOST: JSON.stringify(process.env.HOST),
+        PORT: JSON.stringify(process.env.PORT),
+        API_URI: JSON.stringify(process.env.API_URI),
+      }
     })
   ]
 });
