@@ -37,7 +37,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink
-    .concat(new createUploadLink({ uri: 'http://rp2-stage.eastus.cloudapp.azure.com:4003/api' })),
+    .concat(new createUploadLink({ uri: 'http://13.68.143.152:4003/api' })),
   cache: new InMemoryCache()
 })
 
