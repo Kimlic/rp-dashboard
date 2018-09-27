@@ -8,8 +8,6 @@ import logoFetch from 'src/graphql/LogoFetch.gql'
 export default graphql(logoUpdate, {
   props: ({ mutate }) => ({
     logoUpdate: (variables) => {
-      console.log("VARS: ", variables);
-      
       return mutate({ 
         variables,
         refetchQueries: [{

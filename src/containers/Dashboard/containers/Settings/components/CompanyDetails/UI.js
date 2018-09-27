@@ -1,14 +1,14 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Container, Col, Form, FormGroup, Label, Input } from 'reactstrap'
 import uuidv4 from 'uuid/v4'
 
 import './index.scss'
 
-import ImageUploadModal from '../ImageUploadModal'
-
+import logoPlaceholder from 'src/assets/logo_placeholder.svg'
+ 
 // Component
 
-export default class UI extends PureComponent {
+export default class UI extends Component {
 
   // Handlers
 
@@ -87,7 +87,7 @@ export default class UI extends PureComponent {
 
           <Col sm={3}>
             <div className="settings--details--logo">
-              {logo && <img src={logo.url} className="img img-fluid" alt="logo" />}
+              <img src={logo.url || logoPlaceholder} className="img img-fluid" alt="logo" />
               <Input id="logo" type="file" placeholder="Change logo" onChange={this.handleFileChange(companyId, onLogoChange)} />
               <Label for="logo">Change logo</Label>
             </div>

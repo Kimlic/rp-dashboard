@@ -1,3 +1,4 @@
 fragment LogoFields on Logo {
-  url
+  url,
+  file
 }

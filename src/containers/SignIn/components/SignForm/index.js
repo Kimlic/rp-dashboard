@@ -3,6 +3,7 @@ import { Row, Col, Button, Jumbotron, Form, Input } from 'reactstrap'
 import { compose } from 'react-apollo'
 
 import fingerprint from '../../assets/fingerprint.svg'
+import logoPlaceholder from 'src/assets/logo_placeholder.svg'
 
 import logoFetchContainer from 'src/graphql/logoFetchContainer'
 
@@ -15,7 +16,7 @@ const component = ({ email, password, handleChange, handleSubmit, logoData }) =>
     <img src={fingerprint} className="signin--bg" alt="fingerprint" />
 
     <Col xs={6} className="signin--content d-flex flex-column justify-content-center text-center">
-      {logoData.logo && <img src={logoData.logo.url} className="signin--logo img img-fluid" alt="logo" />}
+      {!logoData.loading && <img src={logoData.logo.url || logoPlaceholder} className="img img-fluid" alt="logo" />}
 
       <Jumbotron className="py-5">
         <Form className="d-flex flex-column justify-content-center" onSubmit={handleSubmit}>

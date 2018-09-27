@@ -5,7 +5,7 @@ import { compose } from 'react-apollo'
 
 import './index.scss'
 
-import logo from 'src/assets/rp_logo.svg'
+import logoPlaceholder from 'src/assets/logo_placeholder.svg'
 
 import { role } from 'src/constants/auth'
 import authorized from 'src/HOC/authorized'
@@ -42,7 +42,6 @@ class Dashboard extends Component {
   render() {
     const { match, logoData } = this.props
     const url = match.url
-    const logo = logoData.logo
 
     return (
       <div className="d-flex flex-row">
@@ -55,7 +54,7 @@ class Dashboard extends Component {
         <div className="dashboard" id="dashboard">
           <Navbar light expand="md">
             <NavbarBrand href="/">
-              {logo && <img src={logo.url} height="50rem" className="img-responsive" alt="logo" />}
+              {!logoData.loading && <img src={logoData.logo.url || logoPlaceholder} height="50rem" alt="logo" />}
             </NavbarBrand>
 
             <Nav className="ml-auto" navbar>

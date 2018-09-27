@@ -2,7 +2,7 @@ const path = require('path')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 
 module.exports = {
-  context: __dirname,
+  context: path.join(__dirname, '../'),
   entry: [
     "@babel/polyfill",
     path.resolve(__dirname, '../src', 'index.js')
