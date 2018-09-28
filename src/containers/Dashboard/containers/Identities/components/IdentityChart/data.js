@@ -1,7 +1,7 @@
 export const data = [
   {
-    "id": "japan",
-    "color": "hsl(45, 70%, 50%)",
+    "id": "identities",
+    "color": "hsl(0, 0%, 0%)",
     "data": [
       {
         "x": "plane",

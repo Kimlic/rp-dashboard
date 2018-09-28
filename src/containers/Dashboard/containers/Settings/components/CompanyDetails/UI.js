@@ -87,7 +87,7 @@ export default class UI extends Component {
 
           <Col sm={3}>
             <div className="settings--details--logo">
-              <img src={logo.url || logoPlaceholder} className="img img-fluid" alt="logo" />
+              <img src={logo ? logo.url : logoPlaceholder} className="img img-fluid" alt="logo" />
               <Input id="logo" type="file" placeholder="Change logo" onChange={this.handleFileChange(companyId, onLogoChange)} />
               <Label for="logo">Change logo</Label>
             </div>
