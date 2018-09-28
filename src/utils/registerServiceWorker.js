@@ -10,11 +10,12 @@ const isLocalhost = Boolean(
 
 export default function register() {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location)
-    if (publicUrl.origin !== window.location.origin) return
+    // const publicUrl = new URL(process.env.PUBLIC_URL, window.location)
+    // if (publicUrl.origin !== window.location.origin) return
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`
+      // const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`
+      const swUrl = `service-worker.js`
 
       if (isLocalhost) {
         checkValidServiceWorker(swUrl)

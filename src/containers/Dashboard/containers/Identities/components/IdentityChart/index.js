@@ -30,7 +30,7 @@ class IdentityChart extends Component {
     "tickSize": 5,
     "tickPadding": 5,
     "tickRotation": 0,
-    "legend": "dates",
+    "legend": "Timeline",
     "legendOffset": 36,
     "legendPosition": "center"
   }
@@ -40,7 +40,7 @@ class IdentityChart extends Component {
     "tickSize": 5,
     "tickPadding": 5,
     "tickRotation": 0,
-    "legend": "verified documents",
+    "legend": "Num of Documents",
     "legendOffset": -40,
     "legendPosition": "center"
   }
@@ -70,6 +70,11 @@ class IdentityChart extends Component {
     ]
   }]
 
+  colors = () => [
+    '#28a745',
+    '#dc3545'
+  ]
+
   // Render
 
   render() {
@@ -88,16 +93,16 @@ class IdentityChart extends Component {
           curve="natural"
           axisBottom={this.axisBottom}
           axisLeft={this.axisLeft}
-          colors="blues"
-          dotSize={8}
-          dotColor="inherit:darker(1)"
+          colors={this.colors()}
+          dotSize={15}
+          dotColor="#fff"
           dotBorderWidth={1}
-          dotBorderColor="#005CB9"
+          dotBorderColor="#007de8"
           enableDotLabel={true}
           dotLabel="y"
           dotLabelYOffset={-12}
-          enableArea={false}
-          areaOpacity={0.35}
+          enableArea={true}
+          areaOpacity={0.1}
           animate={true}
           motionStiffness={90}
           motionDamping={15}
