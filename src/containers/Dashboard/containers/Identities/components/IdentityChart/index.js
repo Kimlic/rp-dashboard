@@ -30,7 +30,7 @@ class IdentityChart extends Component {
     "tickSize": 5,
     "tickPadding": 5,
     "tickRotation": 0,
-    "legend": "transportation",
+    "legend": "dates",
     "legendOffset": 36,
     "legendPosition": "center"
   }
@@ -40,7 +40,7 @@ class IdentityChart extends Component {
     "tickSize": 5,
     "tickPadding": 5,
     "tickRotation": 0,
-    "legend": "count",
+    "legend": "verified documents",
     "legendOffset": -40,
     "legendPosition": "center"
   }
@@ -92,11 +92,11 @@ class IdentityChart extends Component {
           dotSize={8}
           dotColor="inherit:darker(1)"
           dotBorderWidth={1}
-          dotBorderColor="#ffffff"
+          dotBorderColor="#005CB9"
           enableDotLabel={true}
           dotLabel="y"
           dotLabelYOffset={-12}
-          enableArea={true}
+          enableArea={false}
           areaOpacity={0.35}
           animate={true}
           motionStiffness={90}

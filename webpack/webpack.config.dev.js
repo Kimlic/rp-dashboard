@@ -42,6 +42,7 @@ module.exports = merge.smart(config, {
         HOST: JSON.stringify(process.env.HOST),
         PORT: JSON.stringify(process.env.PORT),
         API_URI: JSON.stringify(process.env.API_URI),
+        PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL)
       }
     })
   ]
