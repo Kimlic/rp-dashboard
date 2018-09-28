@@ -4,6 +4,7 @@ const merge = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackRootPlugin = require('html-webpack-root-plugin')
+const envFile = require('node-env-file')
 
 const config = require('./webpack.config.js')
 
