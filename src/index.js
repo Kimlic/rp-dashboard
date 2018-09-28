@@ -37,7 +37,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink
-    .concat(new createUploadLink({ uri: process.env.API_URI })),
+    .concat(new createUploadLink({ uri: 'https://demo.kimlic.com:4003/api' })),
   cache: new InMemoryCache()
 })
 
