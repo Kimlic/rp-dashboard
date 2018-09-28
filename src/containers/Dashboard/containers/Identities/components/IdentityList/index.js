@@ -36,15 +36,10 @@ class IdentityList extends Component {
       isVisible: isVisible,
     })
     const document = documents[index]
-    const { firstName, lastName, type } = document
 
     return (
       <div key={key} className={className} style={style}>
-        <div className="content">
-          <div>{firstName}</div>
-          <div>{lastName}</div>
-          <div>{type}</div>
-        </div>
+        <IdentityCell document={document} />
       </div>
     )
   }
@@ -60,20 +55,25 @@ class IdentityList extends Component {
             <div className={styles.WindowScrollerWrapper}>
               <AutoSizer disableHeight>
                 {({ width }) => (
-                  <List
-                    className={styles.List}
-                    ref={registerChild}
-                    autoHeight
-                    width={width}
-                    height={height}
-                    rowHeight={100}
-                    isScrolling={isScrolling}
-                    overscanRowCount={3}
-                    rowCount={documents.length}
-                    rowRenderer={this.renderRow(documents)}
-                    scrollTop={scrollTop}
-                    onScroll={onChildScroll}
-                  />
+                  <div ref={registerChild}>
+                    <List
+                      className={styles.List}
+                      ref={el => {
+                        window.listEl = el;
+                      }}
+                      autoHeight
+                      width={width}
+                      height={height}
+                      rowHeight={100}
+                      isScrolling={isScrolling}
+                      overscanRowCount={3}
+                      rowCount={documents.length}
+                      rowRenderer={this.renderRow(documents)}
+                      scrollTop={scrollTop}
+                      onScroll={onChildScroll}
+                      scrollToIndex={-1}
+                    />
+                  </div>
                 )}
               </AutoSizer>
             </div>

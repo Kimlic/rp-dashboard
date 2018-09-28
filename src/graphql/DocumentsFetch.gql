@@ -6,5 +6,8 @@ query DocumentsFetch {
     lastName
     country
     userAddress
+    insertedAt
+    verifiedAt
+    verified
   }
 }

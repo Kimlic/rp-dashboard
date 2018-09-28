@@ -1,0 +1,44 @@
+.identity-cell {
+  width: 100%;
+  height: 100%;
+
+  &--container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+    .row {
+      width: 100%;
+      height: 100%;
+
+      .col {
+        margin: auto;
+
+        &__verified {
+          display: flex;
+          flex-direction: row;
+          padding-left: 3rem;
+
+          b {
+            display:flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          svg {
+            width: 2rem;
+            height: 2rem;
+
+            .circle__verified {
+              fill: green,
+            }
+
+            .circle__unverified {
+              fill: red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
