@@ -31,7 +31,7 @@ class IdentityList extends Component {
   // Render
 
   renderRow = (documents) => ({ index, isScrolling, isVisible, key, style }) => {
-    const className = cn("row", {
+    const className = cn("identities--row", {
       ["rowScrolling"]: isScrolling,
       isVisible: isVisible,
     })
