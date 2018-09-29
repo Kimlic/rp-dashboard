@@ -14,6 +14,11 @@ try {
   console.log(e);
 }
 
+console.log("NODE ENV:", process.env.NODE_ENV);
+console.log("STARTING ON:", process.env.HOST, process.env.PORT);
+console.log("API_URI:", process.env.API_URI);
+console.log("PUBLIC_URL:", process.env.PUBLIC_URL);
+
 module.exports = merge.smart(config, {
   mode: 'production',
   output: {

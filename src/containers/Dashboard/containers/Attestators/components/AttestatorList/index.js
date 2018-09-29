@@ -128,6 +128,45 @@ class AttestatorList extends Component {
   }
 
   render() {
+    const { loading, documents } = this.props.documentsData
+    if (loading || !documents) return null
+
+    return (
+      <div className="identities">
+        <WindowScroller ref={this.setRef} scrollElement={window}>
+          {({ height, isScrolling, registerChild, onChildScroll, scrollTop }) => (
+            <div className={styles.WindowScrollerWrapper}>
+              <AutoSizer disableHeight>
+                {({ width }) => (
+                  <div ref={registerChild}>
+                    <List
+                      className={styles.List}
+                      ref={el => {
+                        window.listEl = el;
+                      }}
+                      autoHeight
+                      width={width}
+                      height={height}
+                      rowHeight={100}
+                      isScrolling={isScrolling}
+                      overscanRowCount={3}
+                      rowCount={documents.length}
+                      rowRenderer={this.renderRow(documents)}
+                      scrollTop={scrollTop}
+                      onScroll={onChildScroll}
+                      scrollToIndex={-1}
+                    />
+                  </div>
+                )}
+              </AutoSizer>
+            </div>
+          )}
+        </WindowScroller>
+      </div>
+    )
+  }
+
+  render() {
     const { list } = this.state
 
     return (

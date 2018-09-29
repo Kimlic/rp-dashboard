@@ -10,7 +10,10 @@ class Attestators extends Component {
 
   render() {
     return (
-      <AttestatorList />
+      <div className="attestators">
+        <h2>Marketplace</h2>
+        <AttestatorList />
+      </div>
     )
   }
 }

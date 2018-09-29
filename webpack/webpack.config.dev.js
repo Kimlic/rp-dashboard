@@ -14,6 +14,10 @@ try {
 const host = process.env.HOST
 const port = process.env.PORT
 
+console.log("NODE ENV:", process.env.NODE_ENV);
+console.log("STARTING ON:", host, port);
+
+
 module.exports = merge.smart(config, {
   devtool: 'source-map',
   mode: 'development',
@@ -31,7 +35,7 @@ module.exports = merge.smart(config, {
     noInfo: true,
     hot: false,
     proxy: {
-      "/api/*": "http://localhost:4000"
+      "/api/*": "http://localhost:4003"
     }
   },
   plugins: [
