@@ -13,16 +13,7 @@ import IdentityCell from '../IdentityCell'
 
 class IdentityList extends Component {
 
-  state = {
-    loadedRowCount: 0,
-    loadingRowCount: 0,
-    loadedRowsMap: {},
-    timeoutIdMap: {}
-  }
-
   // Private
-
-  isRowLoaded = ({ index }) => !!this.state.loadedRowsMap[index]
 
   setRef = windowScroller => {
     this._windowScroller = windowScroller

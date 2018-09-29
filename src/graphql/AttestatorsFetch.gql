@@ -1,0 +1,11 @@
+query AttestatorsFetch {
+  attestators {
+    name
+    costPerUser
+    rating
+    compliance
+    response
+    status
+    logo
+  }
+}

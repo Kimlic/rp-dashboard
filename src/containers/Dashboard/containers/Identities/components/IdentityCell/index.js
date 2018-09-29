@@ -56,7 +56,7 @@ class IdentityCell extends Component {
               <svg xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50%" cy="50%" r="5" className={verified ? "circle__verified" : "circle__unverified"} />
               </svg>
-              <b>{verified ? "Verified" : "Not verified"}</b>
+              <b>{verified ? "Verified" : "Unverified"}</b>
             </Col>
           </Row>
         </Container>
