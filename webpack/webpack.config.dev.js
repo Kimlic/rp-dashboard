@@ -22,7 +22,7 @@ module.exports = merge.smart(config, {
   devtool: 'source-map',
   mode: 'development',
   output: {
-    publicPath: '/',
+    // publicPath: '/',
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js'
   },

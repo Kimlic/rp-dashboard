@@ -22,7 +22,7 @@ console.log("PUBLIC_URL:", process.env.PUBLIC_URL);
 module.exports = merge.smart(config, {
   mode: 'production',
   output: {
-    publicPath: '/',
+    // publicPath: '/',
     path: path.join(__dirname, '../dist'),
     filename: 'bundle.js'
   },
