@@ -5,28 +5,23 @@ import './index.scss'
 
 class IdentityCell extends Component {
 
+  // Private
+
+  prettifyDate = (dateStr) => {
+    const date = new Date(dateStr)
+    return new Intl.DateTimeFormat('en-US', { 
+      year: 'numeric', 
+      month: 'short', 
+      day: '2-digit',
+      hour: 'numeric', 
+      minute: 'numeric'
+    }).format(date)
+  }
+
   // Render
 
   render() {
     const { firstName, lastName, type, insertedAt, verifiedAt, verified } = this.props.document
-
-    const insertionTime = new Date(insertedAt)
-    const prettyInsertionTime = new Intl.DateTimeFormat('en-US', { 
-      year: 'numeric', 
-      month: 'short', 
-      day: '2-digit',
-      hour: 'numeric', 
-      minute: 'numeric'
-    }).format(insertionTime)
-
-    const verifiedTime = new Date(verifiedAt)
-    const prettyVerifiedTime = new Intl.DateTimeFormat('en-US', { 
-      year: 'numeric', 
-      month: 'short', 
-      day: '2-digit',
-      hour: 'numeric', 
-      minute: 'numeric'
-    }).format(verifiedTime)
 
     return (
       <div className="identity-cell">
@@ -45,11 +40,11 @@ class IdentityCell extends Component {
             </Col>
 
             <Col xs={2}>
-              {prettyInsertionTime}
+              {this.prettifyDate(insertedAt)}
             </Col>
 
             <Col xs={2}>
-              {prettyVerifiedTime}
+              {verifiedAt && this.prettifyDate(verifiedAt)}
             </Col>
 
             <Col xs={2} className="col__verified">

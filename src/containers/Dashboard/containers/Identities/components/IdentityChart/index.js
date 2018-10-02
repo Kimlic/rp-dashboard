@@ -12,9 +12,6 @@ class IdentityChart extends Component {
   render() {
     const { loading, countDocuments } = this.props.countDocumentsData
     if (loading) return null
-    console.log("DOCS: ", countDocuments);
-    
-
 
     return (
       <div className="chart">

@@ -20,7 +20,6 @@ export default class UploadOutcropPictureModal extends Component {
   }
 
   handleUploadSuccess = (res) => {
-    console.log("RES:", res)
   }
 
   render() {

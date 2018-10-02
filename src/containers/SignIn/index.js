@@ -58,7 +58,6 @@ class SignIn extends Component {
   // Private
 
   onCompleted = (data) => {
-    console.log("INCOMING DATA:", data);
     // loginSuccess(data.login)
     loginSuccess({ token: '123', roles: ['ROLE_ADMIN'], user: { firstName: 'Vasja', lastName: 'Petrov' } })
   }

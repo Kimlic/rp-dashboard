@@ -14,10 +14,6 @@ try {
 const host = process.env.HOST
 const port = process.env.PORT
 
-console.log("NODE ENV:", process.env.NODE_ENV);
-console.log("STARTING ON:", host, port);
-
-
 module.exports = merge.smart(config, {
   devtool: 'source-map',
   mode: 'development',

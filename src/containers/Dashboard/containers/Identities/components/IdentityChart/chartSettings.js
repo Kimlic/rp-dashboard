@@ -75,9 +75,6 @@ export const data = (data) => {
     })
   }
 
-  console.log("verified", verified);
-  
-
   const unverified = {
     "id": "Unverified",
     "color": "hsl(360, 70%, 50%)",
@@ -85,8 +82,6 @@ export const data = (data) => {
       return {"x": el.dateAt, "y": el.unverified}
     })
   }
-  
-  console.log("unverified", unverified);
 
   return [verified, unverified]
 }

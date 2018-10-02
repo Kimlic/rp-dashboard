@@ -9,9 +9,6 @@ const isLocalhost = Boolean(
 )
 
 export default function register() {
-  console.log('NODE ENV:', process.env.NODE_ENV);
-  console.log('PUBLIC URL:', process.env.PUBLIC_URL);
-  
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location)
     if (publicUrl.origin !== window.location.origin) return
