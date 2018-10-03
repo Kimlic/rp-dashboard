@@ -17,11 +17,8 @@ export default compose(companyFetchContainer, companyUpdateContainer, logoFetchC
     
     let onChange = (company) => ({ target: { name, value } }) => companyUpdate({ ...company, [name]: value })
     onChange = onChange(company)
-
-    const loader = <div>Loading...</div>
     const companyDetails = <UI company={company} logo={logo} onChange={onChange} onLogoChange={logoUpdate} />
 
-    if (!loadingCompany && !loadingLogo && !company) return null
-    return (loadingCompany || loadingLogo ? loader : companyDetails)
+    return (loadingCompany || loadingLogo ? null : companyDetails)
   }
 )

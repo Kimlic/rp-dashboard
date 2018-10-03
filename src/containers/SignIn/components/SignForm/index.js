@@ -16,7 +16,7 @@ const component = ({ email, password, handleChange, handleSubmit, logoData }) =>
     <img src={fingerprint} className="signin--bg" alt="fingerprint" />
 
     <Col xs={6} className="signin--content d-flex flex-column justify-content-center text-center">
-      {!logoData.loading && <img src={logoData.logo && logoData.logo.url ? logoData.logo.url : logoPlaceholder} className="img img-fluid" alt="logo" />}
+      {!logoData.loading && logoData.logo && logoData.logo.url && <img src={logoData.logo.url} className="img img-fluid" alt="logo" />}
 
       <Jumbotron className="py-5">
         <Form className="d-flex flex-column justify-content-center" onSubmit={handleSubmit}>

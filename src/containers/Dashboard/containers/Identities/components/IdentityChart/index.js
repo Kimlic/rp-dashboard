@@ -11,7 +11,7 @@ class IdentityChart extends Component {
 
   render() {
     const { loading, countDocuments } = this.props.countDocumentsData
-    if (loading) return null
+    if (loading || !countDocuments) return null
 
     return (
       <div className="chart">

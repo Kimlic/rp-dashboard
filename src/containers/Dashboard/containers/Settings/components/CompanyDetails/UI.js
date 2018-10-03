@@ -65,6 +65,7 @@ export default class UI extends Component {
 
   render() {
     const { company, logo, onChange, onLogoChange } = this.props
+    if (!company) return null
     const { id: companyId, name, email, website, phone, address, details } = company
 
     return (

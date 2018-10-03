@@ -54,7 +54,7 @@ class Dashboard extends Component {
         <div className="dashboard" id="dashboard">
           <Navbar light expand="md">
             <NavbarBrand href="/">
-              {!logoData.loading && <img src={logoData.logo && logoData.logo.url ? logoData.logo.url : logoPlaceholder} height="50rem" alt="logo" />}
+              {!logoData.loading && logoData.logo && logoData.logo.url && <img src={logoData.logo.url} height="50rem" alt="logo" />}
             </NavbarBrand>
 
             <Nav className="ml-auto" navbar>
