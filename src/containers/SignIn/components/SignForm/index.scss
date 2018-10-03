@@ -11,6 +11,11 @@
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+
+    &--logo {
+      max-height: 15rem;
+      margin-bottom: 3rem;
+    }
   }
 
   &--bg {
