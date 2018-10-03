@@ -5,8 +5,6 @@ import { compose } from 'react-apollo'
 
 import './index.scss'
 
-import logoPlaceholder from 'src/assets/logo_placeholder.svg'
-
 import { role } from 'src/constants/auth'
 import authorized from 'src/HOC/authorized'
 import logoFetchContainer from 'src/graphql/logoFetchContainer'

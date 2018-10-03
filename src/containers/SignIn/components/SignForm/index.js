@@ -3,7 +3,6 @@ import { Row, Col, Button, Jumbotron, Form, Input } from 'reactstrap'
 import { compose } from 'react-apollo'
 
 import fingerprint from '../../assets/fingerprint.svg'
-import logoPlaceholder from 'src/assets/logo_placeholder.svg'
 
 import logoFetchContainer from 'src/graphql/logoFetchContainer'
 
