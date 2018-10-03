@@ -1,15 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const envFile = require('node-env-file')
 
+require('dotenv').config({path: path.join(__dirname, '../config/development.env')})
 const config = require('./webpack.config.js')
-
-try {
-  envFile(path.join(__dirname, '../config/development.env'))
-} catch (e) {
-  console.log(e);
-}
 
 const host = process.env.HOST
 const port = process.env.PORT
@@ -19,7 +13,7 @@ module.exports = merge.smart(config, {
   mode: 'development',
   output: {
     publicPath: '/',
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, '../public'),
     filename: 'bundle.js'
   },
   devServer: {
