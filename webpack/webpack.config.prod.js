@@ -5,10 +5,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackRootPlugin = require('html-webpack-root-plugin')
 
-// require('dotenv').config({path: path.join(__dirname, '../config/production.env')})
+require('dotenv').config({path: path.join(__dirname, '../config/production.env')})
 const config = require('./webpack.config.js')
-
-console.log("AAAAAA:", process.env.HOST, process.env.PORT, process.env.API_URI)
 
 module.exports = merge.smart(config, {
   mode: 'production',
