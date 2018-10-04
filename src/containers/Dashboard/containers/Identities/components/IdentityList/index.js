@@ -6,12 +6,36 @@ import { compose } from 'react-apollo'
 import './index.scss'
 import styles from './index.scss'
 import 'react-virtualized/styles.css'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 import documentsFetchContainer from 'src/graphql/documentsFetchContainer'
 
 import IdentityCell from '../IdentityCell'
+import IdentityDetails from '../IdentityDetails'
+
+// Component
 
 class IdentityList extends Component {
+
+  state = {
+    modal: false,
+    document: null
+  }
+
+  // Handlers
+
+  handleCellClick = (document) => (e) => {
+    e.stopPropagation()
+
+    console.log(document)
+    this.setState({ document: document })
+    this.toggle()
+  }
+
+  toggle = () => {
+    this.setState({ modal: !this.state.modal })
+    if (!this.state.modal) this.setState({ document: null })
+  }
 
   // Private
 
@@ -29,10 +53,16 @@ class IdentityList extends Component {
     const document = documents[index]
 
     return (
-      <div key={key} className={className} style={style}>
-        <IdentityCell document={document} />
-      </div>
+      <span onClick={this.handleCellClick(document)}>
+        <div key={key} className={className} style={style}>
+          <IdentityCell document={document} />
+        </div>
+      </span>
     )
+  }
+
+  renderNoRows = () => {
+    return <div>No documents are available.</div>
   }
 
   render() {
@@ -59,17 +89,27 @@ class IdentityList extends Component {
                       isScrolling={isScrolling}
                       overscanRowCount={3}
                       rowCount={documents.length}
+                      noRowsRenderer={this.renderNoRows}
                       rowRenderer={this.renderRow(documents)}
                       scrollTop={scrollTop}
                       onScroll={onChildScroll}
-                      scrollToIndex={-1}
-                    />
+                      scrollToIndex={-1} />
                   </div>
                 )}
               </AutoSizer>
             </div>
           )}
         </WindowScroller>
+
+        <Modal isOpen={this.state.modal} fade={false} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>Document Details</ModalHeader>
+          <ModalBody>
+            <IdentityDetails document={this.state.document}/>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="secondary" onClick={this.toggle}>Close</Button>
+          </ModalFooter>
+        </Modal>
       </div>
     )
   }
