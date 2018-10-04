@@ -1,0 +1,12 @@
+query DocumentFetch($id: String!) {
+  document(id: $id) {
+    id
+    firstName
+    lastName
+    type
+    country
+    insertedAt
+    verifiedAt
+    photos
+  }
+}

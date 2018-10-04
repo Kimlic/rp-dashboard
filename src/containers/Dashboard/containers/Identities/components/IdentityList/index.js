@@ -27,14 +27,12 @@ class IdentityList extends Component {
   handleCellClick = (document) => (e) => {
     e.stopPropagation()
 
-    console.log(document)
-    this.setState({ document: document })
+    this.setState({ document })
     this.toggle()
   }
 
   toggle = () => {
     this.setState({ modal: !this.state.modal })
-    if (!this.state.modal) this.setState({ document: null })
   }
 
   // Private
@@ -104,7 +102,7 @@ class IdentityList extends Component {
         <Modal isOpen={this.state.modal} fade={false} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Document Details</ModalHeader>
           <ModalBody>
-            <IdentityDetails document={this.state.document}/>
+            <IdentityDetails/>
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.toggle}>Close</Button>
