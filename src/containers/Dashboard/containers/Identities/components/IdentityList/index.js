@@ -99,15 +99,15 @@ class IdentityList extends Component {
           )}
         </WindowScroller>
 
-        <Modal isOpen={this.state.modal} fade={false} toggle={this.toggle} className={this.props.className}>
+        {this.state.document && <Modal isOpen={this.state.modal} fade={false} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Document Details</ModalHeader>
           <ModalBody>
-            <IdentityDetails/>
+            <IdentityDetails documentId={this.state.document.id} />
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.toggle}>Close</Button>
           </ModalFooter>
-        </Modal>
+        </Modal>}
       </div>
     )
   }

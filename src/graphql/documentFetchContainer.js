@@ -1,14 +1,16 @@
 import { graphql } from 'react-apollo'
 
-import documentFetch from 'src/graphql/DocumentFetch.gql'
+import query from 'src/graphql/DocumentFetch.gql'
 
 // Functions
 
-export default graphql(documentFetch, {
+export default graphql(query, {
   name: 'documentData',
-  options: () => ({
-    variables: {
-      id: '0e6045e2-d5aa-4200-82d8-2f6a55423176'
-    }
-  })
+  options: props => {
+    console.log("PROPS", props);
+    
+    return ({
+      variables: {id: props.documentId}
+    })
+  }
 })

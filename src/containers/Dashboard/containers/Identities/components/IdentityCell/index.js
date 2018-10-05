@@ -3,22 +3,11 @@ import { Container, Row, Col } from 'reactstrap'
 
 import './index.scss'
 
+import { prettifyDate } from 'src/utils/date'
+
+// Component
+
 class IdentityCell extends Component {
-
-  // Private
-
-  prettifyDate = (dateStr) => {
-    const date = new Date(dateStr)
-    return new Intl.DateTimeFormat('en-US', { 
-      year: 'numeric', 
-      month: 'short', 
-      day: '2-digit',
-      hour: 'numeric', 
-      minute: 'numeric'
-    }).format(date)
-  }
-
-  // Render
 
   render() {
     const { firstName, lastName, type, insertedAt, verifiedAt, verified } = this.props.document
@@ -40,11 +29,11 @@ class IdentityCell extends Component {
             </Col>
 
             <Col xs={2}>
-              {this.prettifyDate(insertedAt)}
+              {prettifyDate(insertedAt)}
             </Col>
 
             <Col xs={2}>
-              {verifiedAt && this.prettifyDate(verifiedAt)}
+              {verifiedAt && prettifyDate(verifiedAt)}
             </Col>
 
             <Col xs={2} className="col__verified">

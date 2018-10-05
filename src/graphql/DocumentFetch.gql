@@ -7,6 +7,9 @@ query DocumentFetch($id: String!) {
     country
     insertedAt
     verifiedAt
-    photos
+    photos {
+      type
+      url
+    }
   }
 }
