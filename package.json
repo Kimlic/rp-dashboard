@@ -88,8 +88,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "start": "webpack-dev-server --config ./webpack/webpack.config.dev.js --hot --inline --progress --profile --colors --watch",
-    "build:webpack": "NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js -p  --profile --colors --bail",
-    "build": "API_URI=https://demo.kimlic.com/dashboard npm run clean && npm run build:webpack",
+    "build:webpack": "API_URI=https://demo.kimlic.com/dashboard NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js -p --profile --colors --bail",
+    "build": "npm run clean && npm run build:webpack",
     "test": "echo \"All tests passed!\" && exit 0"
   }
 }
