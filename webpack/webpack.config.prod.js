@@ -1,15 +1,14 @@
 const path = require('path')
 const webpack = require('webpack')
-// const merge = require('webpack-merge')
+const merge = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackRootPlugin = require('html-webpack-root-plugin')
 
 // require('dotenv').config({path: path.join(__dirname, '../config/production.env')})
-// const config = require('./webpack.config.js')
+const config = require('./webpack.config.js')
 
-// module.exports = merge.smart(config, {
-module.exports = {
+module.exports = merge.smart(config, {
   mode: 'production',
   output: {
     publicPath: '/',
@@ -33,4 +32,4 @@ module.exports = {
     //   }
     // })
   ]
-}
+})
