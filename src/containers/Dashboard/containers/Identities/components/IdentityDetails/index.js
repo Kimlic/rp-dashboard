@@ -41,9 +41,9 @@ class IdentityDetails extends Component {
               Created: {prettifyDate(document.insertedAt)}
             </Col>
 
-            <Col xs={6}>
+            {document.verifiedAt && <Col xs={6}>
               Verified: {prettifyDate(document.verifiedAt)}
-            </Col>
+            </Col>}
           </Row>
         </Container>
 
