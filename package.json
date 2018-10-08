@@ -88,10 +88,12 @@
   "scripts": {
     "clean": "rimraf dist",
     "start": "webpack-dev-server --config ./webpack/webpack.config.dev.js --hot --inline --progress --profile --colors --watch",
+    "test": "echo \"All tests passed!\" && exit 0",
+
     "build:webpack:demo-kimlic-com": "PUBLIC_URL=https://dashboard.kimlic.com API_URI=https://demo.kimlic.com/dashboard NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js -p --profile --colors --bail",
-    "build:demo-kimlic-com": "npm run clean && npm run build:webpack:demo-kimlic-com",
+    "build:demo-kimlic-com": "npm run clean && npm run PUBLIC_URL=https://dashboard.kimlic.com API_URI=https://demo.kimlic.com/dashboard NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js -p --profile --colors --bail",
+    
     "build:webpack:demo-rp2-kimlic-com": "PUBLIC_URL=https://dashboard2.kimlic.com API_URI=https://demo-rp2.kimlic.com/dashboard NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js -p --profile --colors --bail",
-    "build:demo-rp2-kimlic-com": "npm run clean && npm run build:webpack:demo-rp2-kimlic-com",
-    "test": "echo \"All tests passed!\" && exit 0"
+    "build:demo-rp2-kimlic-com": "npm run clean && npm run build:webpack:demo-rp2-kimlic-com"
   }
 }
