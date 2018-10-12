@@ -29,6 +29,10 @@
             width: 2rem;
             height: 2rem;
 
+            .circle__pending {
+              fill: orange,
+            }
+
             .circle__verified {
               fill: green,
             }
