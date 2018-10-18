@@ -1,0 +1,5 @@
+query BalanceFetch {
+  balance {
+    value
+  }
+}

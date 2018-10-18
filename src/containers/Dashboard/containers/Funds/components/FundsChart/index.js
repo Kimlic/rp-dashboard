@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { ResponsiveLine } from '@nivo/line'
+import { compose } from 'react-apollo'
 
 import './index.scss'
 
+import balanceFetchContainer from 'src/graphql/balanceFetchContainer'
 import { data } from './data'
 
 class FundsChart extends Component {
@@ -73,8 +75,14 @@ class FundsChart extends Component {
   // Render
 
   render() {
+    const { loading, balance } = this.props.balanceData
+    if (loading || !balance) return null
+
     return (
       <div className="chart">
+        <h2>Current Balance</h2>
+        <p>{balance.value} KIM</p>
+
         <ResponsiveLine
           data={data}
           margin={this.margin}
@@ -106,4 +114,4 @@ class FundsChart extends Component {
   }
 }
 
-export default FundsChart
+export default compose(balanceFetchContainer)(FundsChart)
