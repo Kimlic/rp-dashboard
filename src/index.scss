@@ -1,6 +1,7 @@
 @import "src/colors";
 
-html, body {
+html,
+body {
   height: 100%;
   background-color: $white-bg;
 }
@@ -22,12 +23,16 @@ label {
   font-size: 1.2em;
 }
 
-input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
 button {
-  &:focus, &:active {
+
+  &:focus,
+  &:active {
     outline: none !important;
     box-shadow: none;
   }
@@ -41,7 +46,8 @@ button {
 
   background-color: $blue-normal;
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     outline: none !important;
     box-shadow: none;
   }
