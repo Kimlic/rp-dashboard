@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import { Container, Row, Col } from 'reactstrap'
@@ -15,6 +15,8 @@ import { loginSuccess, loginFailed } from "src/actions/auth"
 import PageLogo from './components/PageLogo'
 import SignForm from './components/SignForm'
 import Toasts from "src/components/Toasts"
+
+import { FormEdit } from '../../components/FormEdit';
 
 // GraphQL
 
@@ -80,29 +82,31 @@ class SignIn extends Component {
     const { email, password } = this.state
 
     return (
-      <Mutation mutation={M_LOGIN} variables={{ email, password }} onCompleted={this.onCompleted} onError={this.onError}>
-        {(login, { data }) => {
-          return (
-            <Container fluid className="signin">
-              <Row>
-                <Col sm={6} className="vh-100">
-                  <PageLogo />
-                </Col>
+	    <Fragment>
+	      <Mutation mutation={M_LOGIN} variables={{ email, password }} onCompleted={this.onCompleted} onError={this.onError}>
+	        {(login, { data }) => {
+	          return (
+	            <Container fluid className="signin">
+	              <Row>
+	                <Col sm={6} className="vh-100">
+	                  <PageLogo />
+	                </Col>
 
-                <Col xs={6} className="vh-100">
-                  <SignForm
-                    email={email}
-                    password={password}
-                    handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit(login)} />
+	                <Col xs={6} className="vh-100">
+	                  <SignForm
+	                    email={email}
+	                    password={password}
+	                    handleChange={this.handleChange}
+	                    handleSubmit={this.handleSubmit(login)} />
 
-                  <Toasts />
-                </Col>
-              </Row>
-            </Container>
-          )
-        }}
-      </Mutation>
+	                  <Toasts />
+	                </Col>
+	              </Row>
+	            </Container>
+	          )
+	        }}
+	      </Mutation>
+	    </Fragment>
     )
   }
 }
