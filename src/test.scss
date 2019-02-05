@@ -1,4 +1,4 @@
-.form-edit {
+.new-test {
 	border: 3px solid green;
 
 	&__space {
@@ -19,4 +19,19 @@
 	&_x{
 		color: red;
 	}
+}
+
+// @for $i from 1 through 5 by 2 {
+//   .width-#{$i} {
+//     width: #{$i}0em;
+//   }
+// }
+
+@mixin heading-text($color: #242424, $font-size: 4em) {
+  color: $color;
+  font-size: $font-size;
+}
+
+h1, h2, h3 {
+  @include heading-text;
 }

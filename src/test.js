@@ -1,3 +1,5 @@
+import './test.scss';
+
 const util = require( 'util' );
 
 const xxx = ( ) => ( { a: { b: [ 12, 34, 56, ], }, } );

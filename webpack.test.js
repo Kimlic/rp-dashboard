@@ -1,8 +1,15 @@
-const $autoprefixer = require( 'autoprefixer' );
+const $autoprefixer = require( 'autoprefixer' ); // https://github.com/postcss/autoprefixer
+const $precss = require( 'precss' ); // https://github.com/jonathantneal/precss
+const $cssnano = require( 'cssnano' ); // https://github.com/cssnano/cssnano
+const $postcss_advanced_variables = require( 'postcss-advanced-variables' ); // https://github.com/jonathantneal/postcss-advanced-variables
+const $postcss_import = require( 'postcss-import' );
+const $postcss_import_url = require( 'postcss-import-url' );
+const $postcss_preset_env = require( 'postcss-preset-env' );
 const $path = require( 'path' );
 const $webpack = require( 'webpack' );
 
 
+const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 const CaseSensitivePathsPlugin = require( 'case-sensitive-paths-webpack-plugin' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
@@ -11,7 +18,7 @@ const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
 
 
 const $$production = false;
-const $$development = $$production;
+const $$development = !$$production;
 const $$root = $path.join( __dirname, '' );
 const $$path = ( ...path ) => $path.join.apply( $path, [$$root, ...path] );
 const $$exclude = /(?:node_modules|bower_components)/;
@@ -24,6 +31,10 @@ module.exports = {
 	cache: true, // https://webpack.js.org/configuration/other-options/#cache
 	context: $$root,
 	devtool: 'inline-source-map', // https://webpack.js.org/configuration/devtool/#devtool
+	parallelism: 100,
+	performance: {
+		hint: 'warning',
+	},
 	profile: true, // https://webpack.js.org/configuration/other-options/#profile
 	watch: true, // https://webpack.js.org/configuration/watch/#watch
 	watchOptions: {
@@ -32,8 +43,8 @@ module.exports = {
 		poll: true,
 	},
 	// 'info-verbosity': 'verbose',
-	mode: 'development',
-	name: 'development',
+	mode: $$production ? 'production' : 'development',
+	name: 'dashboard',
 
 	entry: {
 		// polyfill: "@babel/polyfill",
@@ -56,23 +67,23 @@ module.exports = {
 	},
 
 	optimization: {
-		minimizer: [
-			new UglifyJsPlugin({
-				cache: true,
-				parallel: true,
-				sourceMap: true // set to true if you want JS source maps
-			}),
-			new OptimizeCSSAssetsPlugin({})
-		]
-	// 	splitChunks: {
-	// 		chunks: 'all',
-	// 	},
+		// minimizer: [
+		// 	new UglifyJsPlugin( {
+		// 		cache: true,
+		// 		parallel: true,
+		// 		sourceMap: true, // set to true if you want JS source maps
+		// 	} ),
+		// 	new OptimizeCSSAssetsPlugin( { } ),
+		// ],
+		// splitChunks: {
+		// 	chunks: 'all',
+		// },
 	},
 
 	module: {
 		rules: [
-			/* babel */
 			{
+				/* babel */
 				exclude: $$exclude,
 				loader: 'babel-loader',
 				options: {
@@ -98,106 +109,75 @@ module.exports = {
 						],
 						// [ 'minify', { undefinedToVoid: false, }, ],
 					],
+					// useBuiltIns: true,
 				},
 				test: /\.(?:mjs|js|jsx)$/,
-			}, /* end: babel */
-
-			// {
-			// 	exclude: $$exclude,
-			// 	use: [
-			// 		{
-			// 			loader: 'style-loader',
-			// 		},
-			// 		{
-			// 			loader: 'css-loader',
-			// 			options: {						
-			// 				import: (parsedImport, resourcePath) => {
-			// 					console.error(parsedImport, resourcePath);
-			// 					return true;
-			// 				},
-			// 			},
-			// 		},
-			// 	],
-			// 	test: /[\.](?:css)/i,
-			// },
-			// {
-			// 	test: /\.(?:css|scss|sass)$/i,
-			// 	exclude: $$exclude,
-			// 	use: [
-			// 		'style-loader',
-			// 		'css-loader',
-			// 		'sass-loader'
-			// 	]
-			// },
-
-			/* scss */
+				/* end: babel */
+			},
 			{
-				test: /[\.](?:sa|sc|c)ss/i,
+				/* css */
+				test: /[\.]css/i,
+				exclude: $$exclude,
+				use: [
+				],
+				/* end: css */
+			},
+			{
+				/* scss */
+				test: /[\.](?:sa|sc)ss/i,
 				exclude: $$exclude,
 				use: [
 					MiniCssExtractPlugin.loader,
-					{
-						loader: 'css-loader',
-						options: {
-							sourceMap: true,
-							minimize: true,
-							url: false,
-						},
-					},
+					// $$production ? MiniCssExtractPlugin.loader : 'style-loader',
+					// {
+					// 	loader: 'css-loader',
+					// 	options: {
+					// 		ident: 'css-loader',
+					// 		modules: true,
+					// 		sourceMap: true,
+					// 		url: false,
+					// 	},
+					// },
 					{
 						loader: 'postcss-loader',
 						options: {
-							plugins: [
-								$autoprefixer( {
-									browsers: $$browsers,
-								} ),
+							plugins: [ 
+								// $postcss_import( { root: loader.resourcePath } ),
+								// $postcss_import_url( ),
+								// $precss( ),
+								// $postcss_advanced_variables( ),
+								// $postcss_preset_env( ),
+								$autoprefixer( { browsers: $$browsers, } ),
+								// $cssnano( ),
 							],
 							sourceMap: true,
 						},
 					},
 					{ loader: 'sass-loader', options: { sourceMap: true, }, },
 				],
-				// use: ExtractTextPlugin.extract( {
-				// 		use: [
-				// 			{
-				// 				loader: 'postcss-loader',
-				// 				options: {
-				// 					plugins: [
-				// 						$autoprefixer( {
-				// 							browsers: $$browsers,
-				// 						} ),
-				// 					],
-				// 					sourceMap: true,
-				// 				},
-				// 			},
-				// 			{
-				// 				loader: 'css-loader',
-				// 				options: {
-				// 					sourceMap: true,
-				// 					minimize: true,
-				// 					url: false,
-				// 				},
-				// 			},
-				// 			{ loader: 'sass-loader', options: { sourceMap: true, }, },
-				// 		],
-				// } ),
-			}, /* end: scss */
+				/* end: scss */
+			},
 			{
+				/* graphQL */
 				// https://www.apollographql.com/docs/react/recipes/webpack.html
 				test: /\.(graphql|gql)$/i,
 				exclude: $$exclude,
 				loader: 'graphql-tag/loader',
+				/* end: graphQL */
 			},
 			{
+				/* image */
 				test: /\.(?:jpe?g|png|gif|svg)$/i,
 				exclude: $$exclude,
 				loader: 'file-loader',
 				options: {
 					outputPath: 'assets/images/',
 					name: '[name].[ext]?[hash:10]',
-				}
+				},
+				/* end: image */
 			},
 			{
+				/* font */
 				test: /\.(?:woff|woff2|eot|ttf|otf)$/i,
 				exclude: $$exclude,
 				loader: 'file-loader',
@@ -205,27 +185,19 @@ module.exports = {
 					outputPath: 'assets/fonts/',
 					name: '[name].[ext]?[hash:10]'
 				},
+				/* end: font */
 			},
 		],
 	},
 
 	plugins: [
 		new CaseSensitivePathsPlugin( ),
-		// new $webpack.debug.ProfilingPlugin(
-		// 	{
-		// 		outputPath: 'dist/events.json',
-		// 	}
-		// ),
+		new CleanWebpackPlugin( [ 'dist/*bundle*', 'dist/assets' ] ),
 		new MiniCssExtractPlugin( {
 			filename: '[name].bundle.css?[hash:10]',
 			chunkFilename: '[name].[id].bundle.css?[hash:10]',
-			debug: false,
+			// disable: $$development,
 		} ),
-		// new ExtractTextPlugin( {
-		// 	filename: '[name].bundle.css?[hash:10]',
-		// 	allChunks: true,
-		// 	disable: false,
-		// } ),
 	],
 
 };
