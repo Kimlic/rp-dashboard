@@ -11,7 +11,7 @@ import { AUTH_TOKEN } from 'src/constants/auth'
 import { store } from 'src/store'
 import registerServiceWorker from 'src/utils/registerServiceWorker'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.scss'
 
 import Dashboard from 'src/containers/Dashboard'

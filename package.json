@@ -25,7 +25,7 @@
 			}
 		},
 		"webpack:test:development~": {
-			"command": "npx webpack --debug --log-level=debug --progress --config=./webpack/webpack.test.js",
+			"command": "npx webpack --debug --log-level=debug --progress --config=./webpack.test.js",
 			"env": {
 				"PUBLIC_URL": "https://dashboard.kimlic.com",
 				"API_URI": "https://demo.kimlic.com/dashboard",
@@ -33,7 +33,7 @@
 			}
 		},
 		"webpack:test:production": {
-			"command": "npx webpack --cache=true --debug --log-level=debug --profile --progress --watch -p --config=./webpack/webpack.test.js",
+			"command": "npx webpack -p --config=./webpack.test.js",
 			"env": {
 				"PUBLIC_URL": "https://dashboard.kimlic.com",
 				"API_URI": "https://demo.kimlic.com/dashboard",

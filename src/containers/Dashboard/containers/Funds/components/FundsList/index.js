@@ -5,7 +5,7 @@ import loremIpsum from 'lorem-ipsum'
 
 import './index.scss'
 import styles from './index.scss'
-import 'react-virtualized/styles.css'
+// import 'react-virtualized/styles.css'
 
 import FundsCell from '../FundsCell'
 

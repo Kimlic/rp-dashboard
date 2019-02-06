@@ -15,6 +15,7 @@ const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
+const Visualizer = require( 'webpack-visualizer-plugin' ); // https://github.com/chrisbateman/webpack-visualizer#plugin-usage
 
 
 const $$production = false;
@@ -25,15 +26,43 @@ const $$exclude = /(?:node_modules|bower_components)/;
 const $$browsers = 'last 2 versions, > 5%, not dead, safari tp, ie >= 8';
 
 
+// https://medium.com/@hpux/webpack-4-in-production-how-make-your-life-easier-4d03e2e5b081
+// https://github.com/faceyspacey/extract-css-chunks-webpack-plugin
 // https://webpack.js.org/configuration/dev-server/#devserver-progress-cli-only
 module.exports = {
+	mode: $$production ? 'production' : 'development',
+
+	context: $$root,
+	entry: {
+		// polyfill: "@babel/polyfill",
+		index: $$path( 'src', 'index.js' ),
+		test: $$path( 'src', 'test.js' ),
+	},
+
+	output: {
+		chunkFilename: '[name].[id].bundle.js',
+		crossOriginLoading: 'anonymous',
+		jsonpScriptType: 'text/javascript',
+		filename: '[name].bundle.js',
+		hotUpdateChunkFilename: '[name].[id].hot-update.bundle.js',
+		hotUpdateMainFilename: '[hash].hot-update.bundle.js',
+		path: $$path( 'dist' ),
+		pathinfo: $$development,
+		publicPath: '/',
+		sourceMapFilename: '[file].map',
+		strictModuleExceptionHandling: true,
+	},
+	
 	bail: true, // https://webpack.js.org/configuration/other-options/#bail
 	cache: true, // https://webpack.js.org/configuration/other-options/#cache
-	context: $$root,
+	devServer: {
+		compress: true,
+		hot: true,
+	},
 	devtool: 'inline-source-map', // https://webpack.js.org/configuration/devtool/#devtool
 	parallelism: 100,
 	performance: {
-		hint: 'warning',
+		hints: 'warning',
 	},
 	profile: true, // https://webpack.js.org/configuration/other-options/#profile
 	watch: true, // https://webpack.js.org/configuration/watch/#watch
@@ -43,21 +72,7 @@ module.exports = {
 		poll: true,
 	},
 	// 'info-verbosity': 'verbose',
-	mode: $$production ? 'production' : 'development',
 	name: 'dashboard',
-
-	entry: {
-		// polyfill: "@babel/polyfill",
-		index: $$path( 'src', 'index.js' ),
-		test: $$path( 'src', 'test.js' ),
-	},
-
-	output: {
-		filename: '[name].bundle.js',
-		chunkFilename: '[name].c.bundle.js',
-		path: $$path( 'dist' ),
-		publicPath: '/',
-	},
 
 	resolve: {
 		extensions: [ ".webpack.js", ".web.js", ".mjs", ".js", '.jsx', ".json" ],
@@ -116,28 +131,20 @@ module.exports = {
 			},
 			{
 				/* css */
-				test: /[\.]css/i,
-				exclude: $$exclude,
-				use: [
-				],
-				/* end: css */
-			},
-			{
-				/* scss */
-				test: /[\.](?:sa|sc)ss/i,
+				test: /[\.](?:sa|sc|c)ss/i,
 				exclude: $$exclude,
 				use: [
 					MiniCssExtractPlugin.loader,
 					// $$production ? MiniCssExtractPlugin.loader : 'style-loader',
-					// {
-					// 	loader: 'css-loader',
-					// 	options: {
-					// 		ident: 'css-loader',
-					// 		modules: true,
-					// 		sourceMap: true,
-					// 		url: false,
-					// 	},
-					// },
+					{
+						loader: 'css-loader',
+						options: {
+							ident: 'css-loader',
+							// modules: true,
+							sourceMap: true,
+							url: false,
+						},
+					},
 					{
 						loader: 'postcss-loader',
 						options: {
@@ -155,7 +162,7 @@ module.exports = {
 					},
 					{ loader: 'sass-loader', options: { sourceMap: true, }, },
 				],
-				/* end: scss */
+				/* end: css */
 			},
 			{
 				/* graphQL */
@@ -192,11 +199,14 @@ module.exports = {
 
 	plugins: [
 		new CaseSensitivePathsPlugin( ),
-		new CleanWebpackPlugin( [ 'dist/*bundle*', 'dist/assets' ] ),
+		new CleanWebpackPlugin( [ 'dist/*bundle*', 'dist/assets', 'dist/stat.html' ] ),
 		new MiniCssExtractPlugin( {
 			filename: '[name].bundle.css?[hash:10]',
 			chunkFilename: '[name].[id].bundle.css?[hash:10]',
 			// disable: $$development,
+		} ),
+		new Visualizer( {
+			filename: 'stat.html',
 		} ),
 	],
 

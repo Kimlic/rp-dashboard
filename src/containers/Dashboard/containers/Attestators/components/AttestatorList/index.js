@@ -5,7 +5,7 @@ import { compose } from 'react-apollo'
 
 import './index.scss'
 import styles from './index.scss'
-import 'react-virtualized/styles.css'
+// import 'react-virtualized/styles.css'
 
 import attestatorsFetchContainer from 'src/graphql/attestatorsFetchContainer'
 
