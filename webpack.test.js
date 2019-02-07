@@ -22,7 +22,7 @@ const $$production = false;
 const $$development = !$$production;
 const $$root = $path.join( __dirname, '' );
 const $$path = ( ...path ) => $path.join.apply( $path, [$$root, ...path] );
-const $$exclude = /(?:node_modules|bower_components)/;
+const $$exclude = /(?:node_modules|bower_components)/i;
 const $$browsers = 'last 2 versions, > 5%, not dead, safari tp, ie >= 8';
 
 
@@ -77,7 +77,8 @@ module.exports = {
 	resolve: {
 		extensions: [ ".webpack.js", ".web.js", ".mjs", ".js", '.jsx', ".json" ],
 		alias: {
-			src: $path.resolve($$root, 'src'),
+			root: $$root,
+			src: $$path( 'src' ),
 		},
 	},
 

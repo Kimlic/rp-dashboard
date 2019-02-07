@@ -1,0 +1,13 @@
+@media (min-width: 100px) {
+	.x{
+		border: 1px solid red;
+	}
+}
+
+@for $count from 1 to 5 by 2 {
+  @if $count > 2 {
+    .col-$count {
+      width: #{$count}0%;
+    }
+  }
+}

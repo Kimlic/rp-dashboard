@@ -2,7 +2,7 @@
 # /config
 
 # dependencies
-/node_modules
+node_modules
 
 # testing
 /coverage
@@ -25,3 +25,5 @@ yarn-error.log*
 package-lock.json
 
 .idea/
+
+/front-end/trg
