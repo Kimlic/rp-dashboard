@@ -1,0 +1,17 @@
+@import "src/colors";
+
+.form-button {
+	min-width: 100px;
+	padding: 12px 32px 10px;
+	border: none;
+	border-radius: 6px;
+	box-sizing: border-box;
+	outline: none;
+	background: $blue-button-light;
+	box-shadow: 0 4px 4px $blue-normal;
+	color: $white-light;
+	line-height: inherit;
+	font: inherit;
+
+	&_submit {}
+}

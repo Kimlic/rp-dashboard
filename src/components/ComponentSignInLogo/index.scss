@@ -1,0 +1,31 @@
+@import 'src/colors';
+
+.signin-logo {
+	position: relative;
+	height: 100%;
+	background-color: $blue-extralight;
+
+	&__item {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	// https://codepen.io/noahblon/post/coloring-svgs-in-css-background-images
+	&__bg {
+		background-color: $blue-medium;
+		mask-image: url('/assets/images/fingerprint.svg');
+		mask-position: center;
+		mask-repeat: no-repeat;
+		mask-size: auto 200%;
+	}
+
+	&__fg {
+		background-image: url('/assets/images/shild-with-fingerprint+kimlic.svg');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 30%;
+	}
+}

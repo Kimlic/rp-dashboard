@@ -12,13 +12,12 @@ import * as authSelect from "src/selectors/auth"
 import { loginSuccess, loginFailed } from "src/actions/auth"
 
 
-// import PageLogo from './components/PageLogo'
-import SignForm from './components/SignForm'
+import ComponentSignInLogo from 'src/components/ComponentSignInLogo';
+import ComponentSignInForm from 'src/components/ComponentSignInForm'
 import Toasts from "src/components/Toasts"
 
 
-import './index.scss'
-import logoSrc from 'src/assets/kimlic_logo.svg'
+import './index.scss';
 // import { FormEdit } from 'src/components/FormEdit';
 
 
@@ -81,28 +80,15 @@ class SignIn extends Component {
 		// this.props.history.push('/')
 	}
 
-	renderFormLogo = () => (
-		<div className="signin__log logo">
-			<svg className="logo_bg">
-				<circle cx="50%" cy="35%" r="100%" fill="purple" className="logo_bg--circle__extralight" />
-				<circle cx="50%" cy="35%" r="75%" fill="green" className="logo--bg--circle__light" />
-				<circle cx="50%" cy="35%" r="50%" className="logo--bg--circle__medium" />
-				<circle cx="50%" cy="35%" r="25%" className="logo--bg--circle__dark"/>
-			</svg>
-
-			<img src={logoSrc} className="logo--img img-responsive" alt="logo" />
-		</div>
-	);
-
 	renderFormOld = ( login, { data } ) => (
 			<Container fluid className="signin">
 				<Row>
 					<Col sm={6} className="vh-100">
-						<PageLogo />
+						<ComponentSignInLogo />
 					</Col>
 
 					<Col xs={6} className="vh-100">
-						<SignForm
+						<ComponentSignInForm
 							email={email}
 							password={password}
 							handleChange={this.handleChange}
@@ -116,17 +102,14 @@ class SignIn extends Component {
 
 	renderForm = ( login, { data } ) => (
 			<div className="signin">
-				<div className="signin__item signin__form">Form</div>
-				<div className="signin__item signin__logo logo">
-					<svg className="logo_bg">
-						<circle cx="50%" cy="35%" r="100%" fill="purple" className="logo_circle-extralight" />
-						<circle cx="50%" cy="35%" r="75%" fill="green" className="logo_circle-light" />
-						<circle cx="50%" cy="35%" r="50%" className="logo_circle-medium" />
-						<circle cx="50%" cy="35%" r="25%" className="logo_circle-dark"/>
-					</svg>
+				<ComponentSignInForm
+					email={email}
+					password={password}
+					handleChange={this.handleChange}
+					handleSubmit={this.handleSubmit(login)} />
 
-					<img src={logoSrc} className="logo--img img-responsive" alt="logo" />
-				</div>
+				<Toasts />
+				<ComponentSignInLogo />
 			</div>
 		);
 

@@ -1,0 +1,49 @@
+@import 'src/colors';
+
+.signin-form {
+	position: relative;
+	height: 100%;
+	background-color: $white-bg;
+	min-width: 256px;
+
+	&__item {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	&__bg {
+		background-color: rgba(130, 161, 193, 0.08);
+		mask-image: url('/assets/images/fingerprint.svg');
+		mask-position: center;
+		mask-repeat: no-repeat;
+		mask-size: auto 200%;		
+	}
+
+	&__fg {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__fieldset {
+		display: inline-block;
+		overflow: hidden;
+		padding: 18px;
+		border-radius: 6px;
+		background-color: rgba(130, 161, 193, 0.08); // #82a1c1
+		box-shadow: 4px 4px 4px $white-dark;
+		text-align: center;
+	}
+
+	&__edit {
+		margin: 12px;
+	}
+
+	&__submit {
+		margin: 18px;
+	}
+}

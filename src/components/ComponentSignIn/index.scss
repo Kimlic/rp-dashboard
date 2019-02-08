@@ -1,0 +1,34 @@
+@import "src/colors";
+
+.signin {
+	min-height: 100vh;
+	min-width: 100vw;
+
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	
+	&__item {
+		min-height: 100vh;
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+
+	&__logo {
+		display: none;
+	}
+	&__form {
+		min-width: 100vw;
+	}
+
+	@media (min-width: 800px) {
+		&__logo {
+			display: block;
+			order: -1;
+			min-width: 30vw;
+		}
+		&__form {
+			min-width: 70vw;
+		}
+	}
+}

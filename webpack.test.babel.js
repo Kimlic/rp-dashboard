@@ -1,21 +1,25 @@
-const $autoprefixer = require( 'autoprefixer' ); // https://github.com/postcss/autoprefixer
-const $precss = require( 'precss' ); // https://github.com/jonathantneal/precss
-const $cssnano = require( 'cssnano' ); // https://github.com/cssnano/cssnano
-const $postcss_advanced_variables = require( 'postcss-advanced-variables' ); // https://github.com/jonathantneal/postcss-advanced-variables
-const $postcss_import = require( 'postcss-import' );
-const $postcss_import_url = require( 'postcss-import-url' );
-const $postcss_preset_env = require( 'postcss-preset-env' );
-const $path = require( 'path' );
-const $webpack = require( 'webpack' );
+import $path from 'path';
+import $webpack from 'webpack';
 
 
-const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
-const CaseSensitivePathsPlugin = require( 'case-sensitive-paths-webpack-plugin' );
-const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
-const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
-const Visualizer = require( 'webpack-visualizer-plugin' ); // https://github.com/chrisbateman/webpack-visualizer#plugin-usage
+import $postcssAdvancedVariables from 'postcss-advanced-variables'; // https://github.com/jonathantneal/postcss-advanced-variables
+import $postcssImport from 'postcss-import';
+import $postcssImportUrl from 'postcss-import-url';
+import $postcssPresetEnv from 'postcss-preset-env';
+import $precss from 'precss'; // https://github.com/jonathantneal/precss
+import $autoprefixer from 'autoprefixer'; // https://github.com/postcss/autoprefixer
+import $cssnano from 'cssnano'; // https://github.com/cssnano/cssnano
+
+
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
+import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
+import Visualizer from'webpack-visualizer-plugin'; // https://github.com/chrisbateman/webpack-visualizer#plugin-usage
 
 
 const $$production = false;
@@ -53,12 +57,25 @@ module.exports = {
 		strictModuleExceptionHandling: true,
 	},
 	
-	bail: true, // https://webpack.js.org/configuration/other-options/#bail
-	cache: true, // https://webpack.js.org/configuration/other-options/#cache
 	devServer: {
+		contentBase: $$path( 'dist' ),
 		compress: true,
 		hot: true,
+		// index: 'index.html',
+		lazy: true,
+		open: true,
+		openPage: '',
+		overlay: true,
+		port: 8080,
+		// progress: true,
+		// public: 'localhost',
+		publicPath: '/dist/',
+		watchContentBase: true,
+		// writeToDisk: true,
 	},
+
+	bail: true, // https://webpack.js.org/configuration/other-options/#bail
+	cache: true, // https://webpack.js.org/configuration/other-options/#cache
 	devtool: 'inline-source-map', // https://webpack.js.org/configuration/devtool/#devtool
 	parallelism: 100,
 	performance: {
@@ -100,6 +117,7 @@ module.exports = {
 		rules: [
 			{
 				/* babel */
+				test: /\.(?:mjs|js|jsx)$/,
 				exclude: $$exclude,
 				loader: 'babel-loader',
 				options: {
@@ -127,7 +145,6 @@ module.exports = {
 					],
 					// useBuiltIns: true,
 				},
-				test: /\.(?:mjs|js|jsx)$/,
 				/* end: babel */
 			},
 			{
@@ -141,6 +158,7 @@ module.exports = {
 						loader: 'css-loader',
 						options: {
 							ident: 'css-loader',
+							minimize: true,
 							// modules: true,
 							sourceMap: true,
 							url: false,
@@ -156,14 +174,33 @@ module.exports = {
 								// $postcss_advanced_variables( ),
 								// $postcss_preset_env( ),
 								$autoprefixer( { browsers: $$browsers, } ),
-								// $cssnano( ),
+								$cssnano( ),
 							],
 							sourceMap: true,
 						},
 					},
-					{ loader: 'sass-loader', options: { sourceMap: true, }, },
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true,
+						},
+					},
 				],
 				/* end: css */
+			},
+			{
+				/* html */
+				test: /\.html$/i,
+				exclude: $$exclude,
+				use: [
+					{
+						loader: 'html-loader',
+						options: {
+							minimize: true,
+						},
+					},
+				],
+				/* end: html */
 			},
 			{
 				/* graphQL */
@@ -200,7 +237,15 @@ module.exports = {
 
 	plugins: [
 		new CaseSensitivePathsPlugin( ),
-		new CleanWebpackPlugin( [ 'dist/*bundle*', 'dist/assets', 'dist/stat.html' ] ),
+		new CleanWebpackPlugin( [ 'dist/*' ] ),
+		new HtmlWebpackPlugin({
+			title: 'Kimlic Dashboard',
+			template: $$path( 'src', 'index.template.html' ),
+			filename: 'index.html',
+		}),
+		new ScriptExtHtmlWebpackPlugin({
+			defaultAttribute: 'defer',
+		}),
 		new MiniCssExtractPlugin( {
 			filename: '[name].bundle.css?[hash:10]',
 			chunkFilename: '[name].[id].bundle.css?[hash:10]',

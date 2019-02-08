@@ -1,0 +1,26 @@
+@import "src/colors";
+
+.form-edit {
+	background-color: $white-light;
+	border: 1px solid $grey-normal;
+	border-radius: 6px;
+	box-sizing: border-box;
+	color: $grey-dark;
+
+	&__space {
+		box-sizing: border-box;
+		margin: 8px 12px 6px;
+	}
+
+	&__input {
+		background: transparent;
+		border: none;
+		box-shadow: none;
+		box-sizing: border-box;
+		color: inherit;
+		line-height: inherit;
+		outline: none;
+		font: inherit;
+		width: 100%;
+	}
+}

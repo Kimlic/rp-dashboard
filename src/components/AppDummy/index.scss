@@ -1,0 +1,14 @@
+.dummy {
+	&__title {
+		color: red;
+		font-size: 2em;
+		font-weight: 700;
+	}
+	&__text {
+		font-size: 1em;
+		font-weight: normal;
+	}
+	&__test {
+		height: 600px;
+	}
+}
