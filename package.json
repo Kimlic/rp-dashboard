@@ -15,7 +15,8 @@
 		"build:demo-rp2-kimlic-com": "npm run clean && npm run build:webpack:demo-rp2-kimlic-com",
 		"dev2": "npm run env && export NODE_ENV=development && webpack --config ./webpack/webpack.config.prod.js && npx lite-server --baseDir='dist' --port=3100",
 		"devs": "webpack-dev-server --config ./webpack.test.babel.js",
-		"dev": "better-npm-run webpack:test:development"
+		"dev": "better-npm-run webpack:test:development",
+		"sdev": "npx lite-server"
 	},
 	"betterScripts": {
 		"webpack:test:development": {

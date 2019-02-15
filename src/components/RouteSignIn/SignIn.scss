@@ -1,0 +1,112 @@
+@import "src/colors";
+
+.signin {
+	$min-width: 300px;
+	$min-width-with-logo: 800px;
+	$logo-width: 0.3;
+
+	& {
+		min-height: 100vh;
+		min-width: 100vw;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+
+	}
+
+	&__item {
+		position: relative;
+		min-height: 100vh;
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+
+	&__subitem {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	&__logo {
+		& {
+			order: -1;
+			display: none;
+			background-color: $blue-extralight;
+		}
+
+		// https://codepen.io/noahblon/post/coloring-svgs-in-css-background-images
+		&_bg {
+			background-color: $blue-medium;
+			mask-image: url('/assets/images/fingerprint.svg');
+			mask-position: center;
+			mask-repeat: no-repeat;
+			mask-size: auto 200%;
+		}
+
+		&_fg {
+			background-image: url('/assets/images/shild-with-fingerprint+kimlic.svg');
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: 30%;
+		}
+	}
+
+	&__form {
+		& {
+			min-width: 100vw;
+			background-color: $white-bg;
+		}
+
+		&_bg {
+			background-color: rgba(130, 161, 193, 0.08);
+			mask-image: url('/assets/images/fingerprint.svg');
+			mask-position: center;
+			mask-repeat: no-repeat;
+			mask-size: auto 200%;
+		}
+
+		&_fg {
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: flex-start;
+			align-items: center;
+		}
+	}
+
+	&__fieldset {
+		min-width: $min-width;
+		display: inline-block;
+		overflow: hidden;
+		padding: 18px;
+		border-radius: 6px;
+		background-color: rgba(130, 161, 193, 0.08); // #82a1c1
+		box-shadow: 4px 4px 4px $white-dark;
+		text-align: center;
+	}
+
+	&__edit {
+		margin: 12px;
+	}
+
+	&__submit {
+		margin: 18px;
+	}
+
+	@media (min-width: $min-width) {
+		&__form_fg {
+			justify-content: center;
+		}
+	}
+
+	@media (min-width: $min-width-with-logo) {
+		&__logo {
+			display: block;
+			min-width: $logo-width * 100vw;
+		}
+		&__form {
+			min-width: (1 - $logo-width) * 100vw;
+		}
+	}
+}

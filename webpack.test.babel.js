@@ -40,7 +40,7 @@ module.exports = {
 	entry: {
 		// polyfill: "@babel/polyfill",
 		index: $$path( 'src', 'index.js' ),
-		test: $$path( 'src', 'test.js' ),
+		// test: $$path( 'src', 'test.js' ),
 	},
 
 	output: {
@@ -56,7 +56,7 @@ module.exports = {
 		sourceMapFilename: '[file].map',
 		strictModuleExceptionHandling: true,
 	},
-	
+
 	devServer: {
 		contentBase: $$path( 'dist' ),
 		compress: true,
@@ -167,7 +167,7 @@ module.exports = {
 					{
 						loader: 'postcss-loader',
 						options: {
-							plugins: [ 
+							plugins: [
 								// $postcss_import( { root: loader.resourcePath } ),
 								// $postcss_import_url( ),
 								// $precss( ),

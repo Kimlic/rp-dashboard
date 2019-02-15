@@ -1,0 +1,37 @@
+@import "src/colors";
+
+.form-edit {
+	// form edit default
+	& {
+		background-color: transparent;
+		border: 1px solid #eeeeee;
+		border-radius: 6px;
+		box-sizing: border-box;
+	}
+
+	// form edit project specified
+	& {
+		background-color: $white-light;
+		border-color: $grey-normal;
+		color: $grey-dark;
+		padding: 8px 12px 6px;
+	}
+
+	&__space {
+		box-sizing: border-box;
+		border: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	// form edit input reset
+	&__input {
+		background: transparent;
+		border: none;
+		box-shadow: none;
+		outline: none;
+		color: inherit;
+		font: inherit;
+		width: 100%;
+	}
+}

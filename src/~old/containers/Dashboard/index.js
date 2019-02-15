@@ -13,7 +13,7 @@ import Identities from './containers/Identities'
 import Funds from './containers/Funds'
 import Settings from './containers/Settings'
 import Attestators from './containers/Attestators'
-import Sidebar from './components/Sidebar'
+import Sidebar from 'src/components/Sidebar'
 
 // Component
 

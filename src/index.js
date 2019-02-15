@@ -1,14 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from 'src/utils/registerServiceWorker';
-import './index.scss'
-// --
-import AppDummy from 'src/components/AppDummy';
+import * as serviceWorker from 'src/serviceWorker';
+import App from 'src/components/App';
+import './index.scss';
 
-ReactDOM.render( <AppDummy />, document.getElementById('root') );
-// --
-// import App from 'src/components/App';
 
-// ReactDOM.render( <App />, document.getElementById('root') );
-// --
-registerServiceWorker();
+ReactDOM.render( <App />, document.getElementById('root') );
+serviceWorker.unregister(); // serviceWorker.register();

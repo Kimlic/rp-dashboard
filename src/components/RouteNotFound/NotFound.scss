@@ -1,0 +1,21 @@
+.not-found {
+	&__title {
+		font-weight: bold;
+	}
+
+	&__content {
+		margin: 2em 0;
+	}
+
+	&__go {
+		&-list {
+			color: red;
+		}
+
+		&-item {}
+
+		&-link {
+			color: inherit;
+		}
+	}
+}
