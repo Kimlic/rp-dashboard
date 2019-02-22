@@ -1,0 +1,49 @@
+@import "src/colors";
+
+.sidebar {
+	$width: 100px;
+
+	& {
+		background-color: $blue-light;
+
+	}
+
+	&__item {
+		display: inline-block;
+		height: $width;
+		width: $width;
+
+		background-color: $blue-extradark;
+		mask-position: center;
+		mask-repeat: no-repeat;
+		mask-size: $width * 0.6 auto;
+		border: 1px solid red;
+
+		&_active, &:hover {
+			background-color: $white-light;
+		}
+
+		&_xxx1 {
+			mask-size: $width * 0.4 auto;
+			mask-image: url('/assets/images/sidebar-1-identity.svg');
+		}
+
+		&_xxx2 {
+			mask-image: url('/assets/images/sidebar-2-fund.svg');
+		}
+
+		&_xxx3 {
+			mask-size: $width * 0.5 auto;
+			mask-image: url('/assets/images/sidebar-3-settings.svg');
+		}
+
+		&_xxx4 {
+			mask-image: url('/assets/images/sidebar-4-attestators.svg');
+		}
+	}
+}
+
+
+
+
+

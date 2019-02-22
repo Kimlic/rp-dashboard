@@ -1,100 +1,60 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import RouteDashBoard from 'src/components/RouteDashBoard';
-import RouteSignIn from 'src/components/RouteSignIn';
-import RouteNotFount from 'src/components/RouteNotFound';
+import React, { Component, Fragment, } from 'react';
+// import {  } from 'react-route';
+import { createBrowserHistory } from 'history';
+import { Router, Redirect, Switch, } from 'react-router-dom';
+import Route from 'src/components/MyRoute';
+import DashBoard from 'src/components/RouteDashBoard';
+import SignIn from 'src/components/RouteSignIn';
+import NotFount from 'src/components/RouteNotFound';
 import './App.scss';
+
+
+const history = createBrowserHistory();
 
 
 class App extends Component {
 	constructor(props) {
 		super(props);
+
+		this.onLogin = this.onLogin.bind(this);
+		this.onUnLogin = this.onUnLogin.bind(this);
+
 		this.state = {
 			token: '',
 		};
-		this.onLoginChange = this.onLoginChange.bind(this);
-		// this.onLogin = this.onLogin.bind(this);
-		// this.onUnLogin = this.onUnLogin.bind(this);
-		this.onLogined = this.onLogined.bind(this);
-		this.onUnLogined = this.onUnLogined.bind(this);
-		this.getToken = this.getToken.bind(this);
 	};
 	
+	onLogin(token) {
+		console.log(`App.onLogin: token=${token}`);
+		if (token) {
+			this.setState( { token } );
+			history.push('/dashboard');
+		}
+		else {
+			this.onUnLogin();
+		}
+	};
+	
+	onUnLogin() {
+		console.log('App.onUnLogin.');
+		this.setState( { token: '' } );
+		history.push('/signin');
+	};
+
 	render() {
 		return (
-			<Router>
+			<Router history={history}>
 				<Switch>
-					<Redirect
-						exact={true}
-						from='/'
-						to='/dashboard'
-					/>
-					<Route
-						path='/signin'
-						render={
-							( props ) =>
-								<RouteSignIn
-									onChange={ this.onLoginChange() }
-									onLogin={ this.onLogin(props) }
-									getToken={ this.getToken }
-									{ ...props }
-								/>
-						}
-					/>
-					<Route
-						path='/dashboard'
-						render={
-							( props ) =>
-								<RouteDashBoard
-									onUnLogin={ this.onUnLogin(props) }
-									getToken={ this.getToken }
-									{ ...props }
-								/>
-						}
-					/>
-					<Route
-						exact={ true }
-						path='/test'
-						component={ RouteNotFount }
-					/>
-					<Route
-						exact={ true }
-						path='/not-found'
-						component={ RouteNotFount }
-					/>
-					<Redirect from='*' to='/not-found' />
+					<Route exact path='/not-found' component={NotFount} />
+					<Route exact path='/signin' component={SignIn} token={this.state.token} onLogin={this.onLogin} />
+					<Route strict path='/dashboard' component={DashBoard} token={this.state.token} onUnLogin={this.onUnLogin} />
+					<Route strict path='/test' component={NotFount} />
+					<Redirect push exact from='/' to='/signin' />
+					<Redirect push from='*' to='/not-found' />
 				</Switch>
 			</Router>
 		);
 	};
-	
-	onLoginChange = () => () => 0;
-	
-	onLogin = (props) => (token) => this.onLogined(token, props);
-	
-	onUnLogin = (props) => () => this.onUnLogined(props);
-	
-	onLogined(token, props) {
-		console.log(`Login: token=${token}`);
-		if (token) {
-			this.setState( { token } );
-			props.history.push('/dashboard');
-		}
-		else {
-			this.onUnLogin(props);
-		}
-	};
-	
-	onUnLogined(props) {
-		console.log('UnLogin.');
-		this.setState( { token: '' } );
-		props.history.push('/signin');
-	};
-	
-	getToken() {
-		return this.state.token;
-	};
-	
 }
 
 

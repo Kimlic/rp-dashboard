@@ -9,58 +9,84 @@ import img2Src from 'src/assets/shild-with-fingerprint+kimlic.svg';
 class SignIn extends Component {
 	constructor(props) {
 		super(props);
+		
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
-		if (this.props.getToken() ) {
-			this.props.onLogin(this.props.getToken());
+		
+		this.state = {
+			login: '',
+			password: '',
+		};
+		
+		this.onTyping = this.onTyping.bind(this);
+		this.onLogin  = this.onLogin.bind(this);
+
+		if (this.props.token) {
+			this.onLogin(this.props.token);
 		}
+	};
+	
+	onChange(event) {
+		const { name, value: tvalue } = event.target;
+		let svalue = undefined;
+		switch(name) {
+			case 'login':
+				svalue = this.state.login;
+				this.setState( { login: tvalue } );
+				break;
+			case 'password':
+				svalue = this.state.password;
+				this.setState( { password: tvalue } );
+				break;
+		}
+		this.onTyping(name, svalue, tvalue);
+	};
+	
+	onSubmit(event) {
+		event.preventDefault();
+		const { login, password } = this.state;
+		// TODO: form submit validation
+		if (!login || !password) return;
+		// TODO: async login and then call onLogin
+		setTimeout(() => {
+			if (!login || password!=='1') return;
+			let token = `${login}:${password}`;
+			this.onLogin(token, login, password);
+		}, 100);
 	};
 	
 	render() {
 		return (
 			<div className='signin'>
 				<Form
-					onSubmit={ this.onSubmit(this.props.onLogin) }
-					onChange={ this.onChange }
-				/>
+					login={this.state.login}
+					password={this.state.password}
+					onChange={this.onChange}
+					onSubmit={this.onSubmit} />
 				<Logo />
 			</div>
 		);
 	};
 	
-	onChange(change) {
-		const { onChange } = this.props;
-		if (onChange) {
-			onChange(change);
+	onTyping(fieldName, sourceValue, targetValue) {
+		const { onTyping } = this.props;
+		if(onTyping instanceof Function) {
+			onTyping(fieldName, sourceValue, targetValue);
 		}
-		else {
-			const { name, svalue, tvalue } = change;
-			console.log(`Change: ${name}='${svalue}' -> '${tvalue}'`);
+		else if(onTyping===true) {
+			console.log(`SignIn.onTyping: ${fieldName}='${sourceValue}' -> '${targetValue}'`);
 		}
-	};
+	}
 	
-	onSubmit = (onLogin) => (login, password) => {
-		console.log(`Submit: login='${login}', password='${password}'`);
-		if (onLogin) {
-			if (login && password) {
-			
-			}
-			// TODO: async login and then call onLogin
-			setTimeout(() => {
-				if (login==='1@2.3' && password==='123') {
-					let token = `${login}:${password}`;
-					onLogin( token );
-				}
-				else {
-					onLogin( );
-				}
-			}, 100);
+	onLogin(token, login, password) {
+		const { onLogin } = this.props;
+		if(onLogin instanceof Function) {
+			onLogin(token);
 		}
-		else {
-			console.log('onLogin: unspecified');
+		else if(onLogin===true) {
+			console.log(`SignIn.onLogin: token=${token}, login='${login}', password='${password}'`);
 		}
-	};
-	
+	}
 }
 
 

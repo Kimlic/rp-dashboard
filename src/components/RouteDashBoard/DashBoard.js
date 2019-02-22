@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import Route from 'src/components/MyRoute';
 import SideBar from './SideBar';
 import './DashBoard.scss';
 
@@ -8,7 +9,7 @@ class DashBoard extends Component {
 	constructor(props) {
 		super(props);
 		// TODO: disabled for debug
-		// if (!this.props.getToken()) {
+		// if (!this.props.token) {
 		// 	this.props.onUnLogin();
 		// }
 		
@@ -19,11 +20,13 @@ class DashBoard extends Component {
 		console.log(match);
 		return (
 			<div className='dashboard'>
-				<Router>
-					<Fragment>
-						<Route path={`${match.url}`} component={ SideBar }/>
-					</Fragment>
-				</Router>
+				<Redirect exact from='/dashboard' to='/dashboard/xxx1' />
+				<Route path='/dashboard/:pageId' component={SideBar} />
+				{/*<Router>*/}
+					{/*<Fragment>*/}
+						{/*<Route path={`${match.url}`} component={ SideBar }/>*/}
+					{/*</Fragment>*/}
+				{/*</Router>*/}
 			</div>
 		);
 	};

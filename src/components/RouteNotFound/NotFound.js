@@ -4,6 +4,12 @@ import './NotFound.scss';
 
 
 class RouteNotFound extends Component{
+	constructor(props) {
+		super(props);
+		console.log('NotFound');
+		console.log(props);
+	}
+	
 	render = () => (
 		<Fragment>
 			<div className='not-found'>
