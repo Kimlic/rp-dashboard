@@ -9,11 +9,11 @@ class MyRoute extends Component {
 			<Route
 				exact={exact}
 				path={path}
+				sensitive={sensitive}
+				strict={strict}
 				render={(props) => (
 					<MyComponent {...rest} {...props}/>
 				)}
-				sensitive={sensitive}
-				strict={strict}
 			>{staticContext}</Route>
 		);
 	}

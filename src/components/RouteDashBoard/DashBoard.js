@@ -20,7 +20,7 @@ class DashBoard extends Component {
 		console.log(match);
 		return (
 			<div className='dashboard'>
-				<Redirect exact from='/dashboard' to='/dashboard/xxx1' />
+				<Redirect exact strict from='/dashboard' to='/dashboard/identity' />
 				<Route path='/dashboard/:pageId' component={SideBar} />
 				{/*<Router>*/}
 					{/*<Fragment>*/}
