@@ -8,6 +8,7 @@ import MyRoute from 'src/components/MyRoute';
 import DashBoard from 'src/components/RouteDashBoard';
 import SignIn from 'src/components/RouteSignIn';
 import NotFount from 'src/components/RouteNotFound';
+import Test from 'src/components/RouteTest';
 import './App.scss';
 
 
@@ -56,7 +57,7 @@ class App extends Component {
 						<Route exact path='/not-found' component={NotFount} />
 						<MyRoute exact path='/signin' component={SignIn} token={this.state.token} onLogin={this.onLogin} />
 						<MyRoute strict path='/dashboard' component={DashBoard} token={this.state.token} onUnLogin={this.onUnLogin} />
-						<Route strict path='/test' component={NotFount} />
+						<Route strict path='/test' component={Test} />
 						<Redirect push exact from='/' to='/signin' />
 						<Redirect push from='*' to='/not-found' />
 					</Switch>

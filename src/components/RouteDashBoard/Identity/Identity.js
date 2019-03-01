@@ -57,7 +57,7 @@ class Identity extends Component {
 		},
 	];
 	
-	filters2List = (field) => this.state.
+	// filters2List = (field) => this.state.
 	
 	constructor(props) {
 		super(props);

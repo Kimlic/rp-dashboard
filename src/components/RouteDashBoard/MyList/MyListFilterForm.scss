@@ -1,0 +1,110 @@
+.filter-form {
+	& {
+		background-color: white;
+		border: 1px solid black;
+		font-size: 12pt;
+	}
+
+	&__items {
+		display: block;
+		list-style: none;
+		margin: 0;
+		padding: 24px;
+	}
+
+	&__item {
+		overflow: hidden;
+		padding: 10px 0;
+	}
+	&__label {
+		cursor: pointer;
+	}
+	&__input {
+		display: none;
+	}
+	&__checkbox {
+		$border-color: grey;
+		$width: 15px;
+		$center-h: 45%;
+		$center-v: 25%;
+
+		& {
+			border: 1px solid $border-color;
+			border-radius: $width / 4;
+			display: inline-block;
+			height: $width;
+			position: relative;
+			vertical-align: baseline;
+			width: $width;
+		}
+
+		&:before, &:after {
+			content: '';
+			position: absolute;
+			display: inline-block;
+			height: 2px;
+			bottom: $center-v;
+		}
+		&:before {
+			right: 100% - $center-h;
+			width: 30%;
+			transform-origin: bottom right;
+			transform: rotate(45deg);
+		}
+		&:after {
+			left: $center-h;
+			width: 45%;
+			transform-origin: bottom left;
+			transform: rotate(-45deg);
+		}
+	}
+	&__input:checked + &__checkbox {
+		$checkbox-bg: red;
+		$checkbox-fg: white;
+
+		background-color: $checkbox-bg;
+		border: none;
+		&:before, &:after {
+			background-color: $checkbox-fg;
+		}
+	}
+	&__name {
+		margin: 0 12px;
+	}
+	&__actions {
+		border-top: 1px solid black;
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0 12px;
+
+	}
+	&__action {
+		flex-grow: 0;
+		flex-shrink: 0;
+
+		&:first-child {
+			flex-grow: 1;
+		}
+	}
+	&__button {
+		& {
+			background: none;
+			border: none;
+			box-shadow: none;
+			box-sizing: border-box;
+			font: inherit;
+			margin: 8px 0;
+			padding: 8px 12px;
+		}
+		&_clear {
+			color: red;
+		}
+		&_cancel {
+			color: grey;
+		}
+		&_apply {
+			color: blue;
+		}
+	}
+}
