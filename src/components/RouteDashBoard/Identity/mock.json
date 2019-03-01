@@ -1,0 +1,28 @@
+[
+	{
+		"id": "1",
+		"type": "Passport",
+		"firstName": "Volodymyr",
+		"lastName": "Babenko",
+		"country": "Turkey",
+		"attestator": "Veriff.me",
+		"userAddress": "userAddress",
+		"insertedAt": "1234567890",
+		"verifiedAt": "1234567890",
+		"status": "Pending",
+		"reason": "reason"
+	},
+	{
+		"id": "2",
+		"type": "Passport2",
+		"firstName": "Volodymyr2",
+		"lastName": "Babenko2",
+		"country": "Turkey2",
+		"attestator": "Veriff.me2",
+		"userAddress": "userAddress2",
+		"insertedAt": "12345678902",
+		"verifiedAt": "12345678902",
+		"status": "Pending",
+		"reason": "reason2"
+	}
+]

@@ -1,7 +1,7 @@
 @import "src/colors";
 
 .sidebar {
-	$width: 64px;
+	$width: 100%;
 
 	& {
 		background-color: $blue-light;
@@ -29,7 +29,7 @@
 	@mixin item-background($width) {
 		background-position: center;
 		background-repeat: no-repeat;
-		background-size: $width auto;
+		background-size: $width;
 	}
 
 	&__item {
@@ -47,32 +47,32 @@
 		&_logo {
 			@include item($width);
 			padding-top: 180%;
-			@include item-background($width * 0.6);
+			@include item-background(60%);
 			background-image: url('/assets/images/sidebar-0-logo.svg');
 		}
 
 		&_identity {
-			@include item-mask($width * 0.5, $blue-extradark);
+			@include item-mask(50%, $blue-extradark);
 			mask-image: url('/assets/images/sidebar-1-identity.svg');
 		}
 
 		&_transactions {
-			@include item-mask($width * 0.6, $blue-extradark);
+			@include item-mask(60%, $blue-extradark);
 			mask-image: url('/assets/images/sidebar-2-transactions.svg');
 		}
 
-		&_xxx3 {
-			@include item-mask($width * 0.5, $blue-extradark);
+		&_settings {
+			@include item-mask(50%, $blue-extradark);
 			mask-image: url('/assets/images/sidebar-3-settings.svg');
 		}
 
-		&_xxx4 {
-			@include item-mask($width * 0.6, $blue-extradark);
+		&_attestators {
+			@include item-mask(60%, $blue-extradark);
 			mask-image: url('/assets/images/sidebar-4-attestators.svg');
 		}
 
 		&_store {
-			@include item-mask($width * 0.5, $blue-extradark);
+			@include item-mask(50%, $blue-extradark);
 			mask-image: url('/assets/images/sidebar-5-store.svg');
 		}
 	}

@@ -1,0 +1,60 @@
+@import "src/colors";
+
+.identity {
+}
+
+.header-line__sort {
+	position: relative;
+	display: inline-block;
+	vertical-align: baseline;
+	margin: 0 6px;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+
+	&:before, &:after {
+		content: '';
+		position: absolute;
+		display: inline-block;
+		height: 1px;
+		background-color: #999999;
+
+		left: 0;
+		right: 0;
+		bottom: 50%;
+	}
+
+	&:before {
+		right: 50%;
+		transform-origin: center right;
+	}
+
+	&:after {
+		left: 50%;
+		transform-origin: center left;
+	}
+
+	&[data-sort='up'] {
+		&:before {
+			bottom: 75%;
+			transform: rotate(-45deg);
+		}
+
+		&:after {
+			bottom: 75%;
+			transform: rotate(45deg);
+		}
+	}
+
+	&[data-sort='down'] {
+		&:before {
+			bottom: 25%;
+			transform: rotate(45deg);
+		}
+
+		&:after {
+			bottom: 25%;
+			transform: rotate(-45deg);
+		}
+	}
+}

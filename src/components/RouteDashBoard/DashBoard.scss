@@ -1,0 +1,23 @@
+@import "src/colors";
+
+.dashboard {
+	min-height: 100vh;
+	min-width: 100vw;
+	box-sizing: border-box;
+
+	display: flex;
+	flex-flow: row nowrap;
+
+	&__sidebar {
+		display: inline-block;
+		width: 64px;
+		flex-grow: 0;
+		flex-shrink: 0;
+	}
+
+	&__main {
+		display: inline-block;
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+}

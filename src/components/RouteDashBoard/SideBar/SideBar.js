@@ -22,15 +22,15 @@ class SideBar extends Component {
 	IDs = () => [
 		'identity',
 		'transactions',
-		// 'xxx3',
-		// 'xxx4',
+		// 'settings',
+		// 'attestators',
 		'store',
 	];
 	
 	render() {
 		const pageId = this.props.match.params.pageId;
 		const id2item = (id, index) => ({
-			key: id,
+			key: `sidebar-item-${id}`,
 			to: `/dashboard/${id}`,
 			className: ['sidebar__item', `sidebar__item_${id}`, pageId===id ? 'sidebar__item_active' : ''],
 			text: '',

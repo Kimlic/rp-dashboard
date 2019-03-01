@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { Redirect } from 'react-router-dom';
-import Route from 'src/components/MyRoute';
+import { Route, Redirect } from 'react-router-dom';
+import MyRoute from 'src/components/MyRoute';
 import SideBar from './SideBar';
+import Identity from './Identity';
 import './DashBoard.scss';
 
 
@@ -20,8 +21,13 @@ class DashBoard extends Component {
 		console.log(match);
 		return (
 			<div className='dashboard'>
-				<Redirect exact strict from='/dashboard' to='/dashboard/identity' />
-				<Route path='/dashboard/:pageId' component={SideBar} />
+				{/*<Redirect exact strict from='/dashboard' to='/dashboard/identity' />*/}
+				<div className='dashboard__sidebar'>
+					<Route path='/dashboard/:pageId' component={SideBar} />
+				</div>
+				<div className='dashboard__main'>
+					<Route path='/dashboard/identity' component={Identity} />
+				</div>
 				{/*<Router>*/}
 					{/*<Fragment>*/}
 						{/*<Route path={`${match.url}`} component={ SideBar }/>*/}
@@ -30,7 +36,6 @@ class DashBoard extends Component {
 			</div>
 		);
 	};
-	
 }
 
 
