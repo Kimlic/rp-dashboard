@@ -10,7 +10,8 @@
 		"insertedAt": "1234567890",
 		"verifiedAt": "1234567890",
 		"status": "Pending",
-		"reason": "reason"
+		"reason": "reason",
+		"ava": ""
 	},
 	{
 		"id": "2",
@@ -23,6 +24,7 @@
 		"insertedAt": "12345678902",
 		"verifiedAt": "12345678902",
 		"status": "Pending",
-		"reason": "reason2"
+		"reason": "reason2",
+		"ava": ""
 	}
 ]

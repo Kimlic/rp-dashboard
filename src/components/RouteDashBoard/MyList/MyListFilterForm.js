@@ -66,6 +66,7 @@ class MyListFilterForm extends Component {
 		const items = this.state.items;
 		return (
 			<form className='filter-form' onSubmit={this.onSubmit}>
+				<span className='filter-form__triangel'></span>
 				<ul className='filter-form__items' style={{columns: 2}}>
 					{items.map(item => (
 						<li className='filter-form__item' key={item.key}>

@@ -1,8 +1,46 @@
+@import "src/colors";
+
 .filter-form {
+	$form-bg-color: $white-light;
+	$form-border-color: $white-dark;
+	$form-shadow-color: $white-dark;
+
 	& {
-		background-color: white;
-		border: 1px solid black;
+		position: relative;
+		display: inline-flex;
+		flex-flow: column nowrap;
+		align-items: center;
+		background-color: $form-bg-color;
+		border-radius: 4px;
 		font-size: 12pt;
+		box-shadow: 0 0 4px 0 $form-shadow-color;
+	}
+
+	& > * {
+		width: 100%;
+	}
+
+	$triangel-size: 15px;
+	&__triangel {
+		position: absolute;
+		width: $triangel-size * 2;
+		height: $triangel-size;
+		overflow: hidden;
+
+		&:before {
+			content: '';
+			position: absolute;
+			background-color: $form-bg-color;
+			width: $triangel-size * 2;
+			height: $triangel-size * 2;
+			left: $triangel-size;
+			top: 4px;
+			transform-origin: left top;
+			transform: rotate(45deg);
+			box-shadow: 0 0 4px 0 $form-shadow-color;
+		}
+		transform: scaleX(1.5);
+		top: -$triangel-size;
 	}
 
 	&__items {
@@ -10,6 +48,8 @@
 		list-style: none;
 		margin: 0;
 		padding: 24px;
+		//max-height: 150px;
+		overflow-y: auto;
 	}
 
 	&__item {
@@ -59,7 +99,7 @@
 		}
 	}
 	&__input:checked + &__checkbox {
-		$checkbox-bg: red;
+		$checkbox-bg: $blue-normal;
 		$checkbox-fg: white;
 
 		background-color: $checkbox-bg;
@@ -72,7 +112,7 @@
 		margin: 0 12px;
 	}
 	&__actions {
-		border-top: 1px solid black;
+		border-top: 1px solid $form-border-color;
 		display: flex;
 		list-style: none;
 		margin: 0;
@@ -104,7 +144,7 @@
 			color: grey;
 		}
 		&_apply {
-			color: blue;
+			color: $blue-normal;
 		}
 	}
 }
