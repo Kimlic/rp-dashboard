@@ -2,44 +2,37 @@ import React, { Component, Fragment } from 'react';
 import './MyListFilterForm.scss';
 
 
-class MyListFilterForm extends Component {
-	sortItems = (a, b) => a.index - b.index;
-	sortFItems = (a, b) => b.checked - a.checked || a.name.localeCompare(b.name);
-	
-	mapItem2FItem = (title) => (_, index) => ({
-		key: _.key || `filter-form-item-${title}-${_.name}`,
-		name: _.name,
-		checked: _.state,
-		index: index,
-	});
-	mapFItem2Item = (_) => ({
-		name: _.name,
-		state: _.checked,
-	});
+const cmpTo = (asc = true) => asc ? 1 : -1;
+const cmpS = (a, b) => a.localeCompare(b);
+const cmpBy = (by, a, b, s) => s ? cmpS(a[by], b[by]) : (a[by]-b[by]);
+const cmpOne = (_) => (a, b) => cmpBy(_.by, a, b, _.s) * cmpTo(_.asc);
+const cmpAll = (_, ...all) => (a, b) => cmpOne(_) || cmpAll(...all)(a, b);
+const mapProps2Items = (title = '') => (_, index) => ({
+	key: _.key || `filter-form-item-${title}-${_.name}`,
+	name: _.name,
+	checked: _.state,
+	index: index,
+});
+const mapItems2Props = (_) => ({
+	name: _.name,
+	state: _.checked,
+});
 
-	castItems2FItems(items, title='') {
-		try {
-			return items.map(this.mapItem2FItem(title)).sort(this.sortFItems);
-		} catch (e) {
-			return [];
-		}
-	};
-	castFItems2Items(items) {
-		try {
-			return items.sort(this.sortItems).map(this.mapFItem2Item);
-		} catch (e) {
-			return [];
-		}
-	};
-	
+class MyListFilterForm extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			items: this.castItems2FItems(this.props.items, this.props.title),
-		};
+		this.state = {};
 		this.onCheck = this.onCheck.bind(this);
 		this.onCancel = this.onCancel.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		
+		try {
+			this.state.items = props.items
+				.map(mapProps2Items(props.title))
+				.sort(cmpAll({by:'checked', asc:true}, {by:'name', asc:true}));
+		} catch (e) {
+			this.state.items = [];
+		}
 	}
 	
 	onCheck = (event) => {
@@ -49,16 +42,24 @@ class MyListFilterForm extends Component {
 		const index = Number(target.getAttribute('data-index'));
 		try {
 			const { items } = this.state;
-			const item = items.find( (_) => _.index===index );
-			item.checked = checked;
+			items.find( (_) => _.index===index ).checked = checked;
 			this.setState({ items: items.sort(this.sortFItems) });
 		} catch (e) {
 			console.log(key, index, checked, e);
 		}
 	};
 	
-	onCancel = () => {};
-	onSubmit = () => {};
+	onCancel = () => this.props.onCancal(
+		this.state.items
+			.sort(cmpAll({by: 'index'}))
+			.map(mapItems2Props)
+	);
+	
+	onSubmit = () => this.props.onSubmit(
+		this.state.items
+			.sort(cmpAll({by: 'index'}))
+			.map(mapItems2Props)
+	);
 	
 	// onComponentDidMount
 	

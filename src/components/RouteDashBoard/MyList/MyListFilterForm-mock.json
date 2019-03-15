@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Veriff",
+		"state": true
+	},
+	{
+		"name": "Jumio",
+		"state": true
+	},
+	{
+		"name": "Trulioo",
+		"state": false
+	},
+	{
+		"name": "Onfido",
+		"state": false
+	},
+	{
+		"name": "Electronic ID",
+		"state": false
+	},
+	{
+		"name": "Idscan",
+		"state": false
+	}
+]
