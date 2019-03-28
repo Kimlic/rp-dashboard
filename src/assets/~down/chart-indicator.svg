@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
+    <defs>
+        <style>
+            .cls-1,.cls-2{fill:#4880ff}.cls-1{opacity:.268}
+        </style>
+    </defs>
+    <g id="Chart_indicator" transform="translate(-803 -433)">
+        <circle id="Ellipse_1452" cx="19" cy="19" r="19" class="cls-1" data-name="Ellipse 1452" transform="translate(803 433)"/>
+        <circle id="Ellipse_1451" cx="9" cy="9" r="9" class="cls-2" data-name="Ellipse 1451" transform="translate(813 443)"/>
+    </g>
+</svg>
